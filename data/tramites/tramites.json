@@ -1,0 +1,174 @@
+{
+  "tramites": [
+    {
+      "nombre": "Certificado de Notas",
+      "descripcion": "Solicitud de certificado oficial de calificaciones académicas con sello y firma de Registro y Control Académico. Sirve como constancia del historial académico del estudiante ante entidades externas.",
+      "categoria": "certificados",
+      "tiempo_estimado": "3-5 días hábiles",
+      "costo": "Gratuito para estudiantes activos",
+      "oficina": "Registro y Control Académico",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/registro-control",
+      "keywords": ["certificado", "notas", "historial", "calificaciones", "académico", "récord", "historial académico", "constancia de notas", "record académico"],
+      "pasos": [
+        "1. Ingresar al Portal Universitario (portaludea.udea.edu.co) con tu usuario y contraseña institucional.",
+        "2. Navegar al menú Servicios Académicos → Solicitud de Certificados.",
+        "3. Seleccionar el tipo 'Certificado de Notas' y el periodo académico deseado.",
+        "4. Verificar que los datos personales y académicos sean correctos.",
+        "5. Confirmar la solicitud y guardar el número de radicado generado.",
+        "6. Esperar la notificación por correo institucional (3-5 días hábiles).",
+        "7. Retirar el certificado físico en la oficina de Registro y Control Académico o descargarlo en formato digital si aplica."
+      ],
+      "documentos_requeridos": [
+        "Documento de identidad vigente (cédula o tarjeta de identidad)",
+        "Carné estudiantil vigente",
+        "Número de matrícula activo"
+      ],
+      "advertencias": [
+        "Solo disponible para estudiantes con matrícula activa o egresados de la Universidad de Antioquia.",
+        "El certificado físico tiene validez de 30 días a partir de su expedición.",
+        "Para estudiantes egresados el tiempo de entrega puede extenderse hasta 10 días hábiles.",
+        "Verificar que el correo institucional esté activo para recibir notificaciones."
+      ]
+    },
+    {
+      "nombre": "Cancelación de Materias",
+      "descripcion": "Trámite formal para retirar una o varias asignaturas inscritas en el periodo académico vigente, sin que la cancelación afecte el promedio acumulado del estudiante. Aplica dentro de las fechas establecidas en el calendario académico.",
+      "categoria": "gestion_academica",
+      "tiempo_estimado": "Inmediato (en línea) o 1-2 días hábiles (presencial)",
+      "costo": "Gratuito",
+      "oficina": "Registro y Control Académico / Portal Universitario",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/registro-control/cancelacion-asignaturas",
+      "keywords": ["cancelar", "cancelación", "materia", "asignatura", "retirar", "eliminar", "baja", "retirar materia", "cancelar asignatura", "baja de materia"],
+      "pasos": [
+        "1. Verificar en el calendario académico que se está dentro del periodo habilitado para cancelación de materias.",
+        "2. Ingresar al Portal Universitario con tu usuario y contraseña institucional.",
+        "3. Ir a Servicios Académicos → Gestión de Inscripciones → Cancelación de Asignaturas.",
+        "4. Seleccionar la(s) asignatura(s) que deseas cancelar de la lista de materias inscritas.",
+        "5. Leer y confirmar las implicaciones de la cancelación (impacto en créditos, becas, etc.).",
+        "6. Confirmar la solicitud y guardar el comprobante con el número de radicado.",
+        "7. Verificar que la asignatura ya no aparezca en tu horario activo.",
+        "8. Si la cancelación es extemporánea, dirigirse presencialmente a Registro y Control con justificación escrita."
+      ],
+      "documentos_requeridos": [
+        "Acceso al Portal Universitario (usuario y contraseña)",
+        "Para cancelaciones extemporáneas: carta de solicitud con justificación",
+        "Para cancelaciones extemporáneas: documentos de soporte (certificado médico, carta de empleador, etc.)"
+      ],
+      "advertencias": [
+        "La cancelación solo se puede realizar dentro de las fechas establecidas en el calendario académico.",
+        "Cancelar materias puede afectar el cumplimiento de requisitos de becas o auxilios económicos.",
+        "El número de materias canceladas en el historial académico puede influir en procesos de graduación.",
+        "Si cancelas por fuera de fechas, debes justificarlo ante el Comité de Carrera.",
+        "Consultar el Reglamento Estudiantil (Acuerdo Superior 1) para límites de cancelaciones permitidas."
+      ]
+    },
+    {
+      "nombre": "Inscripción de Trabajo de Grado",
+      "descripcion": "Proceso para registrar formalmente el proyecto de trabajo de grado, tesis o modalidad equivalente ante la facultad, asignando director y modalidad. Es requisito indispensable para optar al título profesional.",
+      "categoria": "grado",
+      "tiempo_estimado": "5-10 días hábiles (aprobación por Comité de Carrera)",
+      "costo": "Gratuito",
+      "oficina": "Coordinación de Trabajo de Grado de la Facultad / Registro y Control Académico",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/investigacion/trabajo-grado",
+      "keywords": ["trabajo de grado", "tesis", "proyecto", "grado", "inscribir", "modalidad", "director", "inscripción grado", "proyecto de grado", "anteproyecto", "opción de grado", "titulación"],
+      "pasos": [
+        "1. Verificar que cumples con los requisitos previos: porcentaje de créditos aprobados según el plan de estudios (generalmente 70% o más).",
+        "2. Seleccionar la modalidad de trabajo de grado disponible en tu programa (tesis, proyecto aplicado, pasantía, etc.).",
+        "3. Identificar y contactar al docente que será tu director de trabajo de grado y obtener su aceptación.",
+        "4. Elaborar el anteproyecto o propuesta inicial según el formato establecido por la facultad.",
+        "5. Diligenciar el formulario de inscripción de trabajo de grado disponible en la coordinación o en el portal.",
+        "6. Entregar el formulario firmado por el director y el estudiante ante la Coordinación de Trabajos de Grado.",
+        "7. Esperar la aprobación por parte del Comité de Carrera (5-10 días hábiles).",
+        "8. Una vez aprobado, inscribir la asignatura 'Trabajo de Grado' en el Portal Universitario en el periodo correspondiente.",
+        "9. Registrar en Registro y Control Académico el nombre del director y el título del proyecto."
+      ],
+      "documentos_requeridos": [
+        "Formulario de inscripción de trabajo de grado (disponible en la coordinación de la facultad)",
+        "Anteproyecto o propuesta según formato de la facultad",
+        "Carta de aceptación del director de trabajo de grado",
+        "Paz y salvo o certificado de requisitos cumplidos del programa",
+        "Documento de identidad"
+      ],
+      "advertencias": [
+        "Cada programa académico puede tener requisitos y formatos específicos; consultar la coordinación de tu facultad.",
+        "El director debe ser docente vinculado a la Universidad de Antioquia con disponibilidad para el acompañamiento.",
+        "La no inscripción dentro de las fechas del calendario puede implicar aplazar la graduación un semestre.",
+        "Algunas modalidades requieren aprobación adicional de entidades externas (pasantías, proyectos con empresa).",
+        "El plazo máximo para culminar el trabajo de grado está regulado por el reglamento de cada facultad."
+      ]
+    },
+    {
+      "nombre": "Beca Socioeconómica",
+      "descripcion": "Apoyo económico destinado a estudiantes con dificultades financieras comprobadas para garantizar la permanencia en sus estudios. Cubre parcial o totalmente el valor de la matrícula y puede incluir auxilio de sostenimiento.",
+      "categoria": "bienestar",
+      "tiempo_estimado": "15-30 días hábiles (proceso de evaluación y asignación)",
+      "costo": "Gratuito (es un beneficio, no tiene costo de solicitud)",
+      "oficina": "Bienestar Universitario — Área de Apoyo Socioeconómico",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/estudiantes/bienestar-universitario",
+      "keywords": ["beca", "apoyo económico", "sostenimiento", "subsidio", "bienestar", "financiero", "ayuda", "beca socioeconómica", "auxilio", "apoyo financiero", "dificultades económicas", "descuento matrícula"],
+      "pasos": [
+        "1. Consultar en la página de Bienestar Universitario las convocatorias vigentes y fechas de apertura.",
+        "2. Leer los requisitos y criterios de elegibilidad de la beca socioeconómica.",
+        "3. Reunir los documentos socioeconómicos del núcleo familiar requeridos para el estudio.",
+        "4. Ingresar al portal de Bienestar Universitario o dirigirse a la oficina para diligenciar el formulario de solicitud.",
+        "5. Adjuntar todos los soportes documentales en los formatos y tamaños especificados.",
+        "6. Radicar la solicitud dentro de las fechas de la convocatoria.",
+        "7. Asistir a la visita o entrevista socioeconómica si es convocado por Bienestar.",
+        "8. Esperar el resultado de la evaluación (publicado en el portal o notificado por correo institucional).",
+        "9. Si eres seleccionado, formalizar la aceptación de la beca siguiendo las instrucciones enviadas.",
+        "10. Cumplir los compromisos académicos estipulados para mantener el beneficio."
+      ],
+      "documentos_requeridos": [
+        "Formulario de solicitud de beca socioeconómica (diligenciado y firmado)",
+        "Certificado de ingresos y retenciones o declaración de renta del núcleo familiar (último año)",
+        "Certificados de ingresos de los miembros del núcleo familiar que trabajen",
+        "Recibo de servicios públicos del lugar de residencia",
+        "Certificado de matrícula activa del periodo vigente",
+        "Documento de identidad del estudiante",
+        "Registro civil o documento que acredite la conformación del núcleo familiar",
+        "Soportes de gastos especiales si aplica (enfermedad, discapacidad, etc.)"
+      ],
+      "advertencias": [
+        "Las convocatorias tienen fechas específicas; no se reciben solicitudes por fuera del periodo habilitado.",
+        "La beca puede ser suspendida si el estudiante no cumple con el rendimiento académico mínimo exigido.",
+        "Presentar información falsa en la solicitud puede acarrear sanciones disciplinarias.",
+        "El beneficio no es automáticamente renovable; se debe solicitar cada periodo según convocatoria.",
+        "Existen diferentes tipos de apoyos (matrícula, sostenimiento, alimentación); verificar cuál aplica a tu situación."
+      ]
+    },
+    {
+      "nombre": "Recurso de Reposición",
+      "descripcion": "Mecanismo formal mediante el cual el estudiante puede solicitar la revisión y reconsideración de una calificación o decisión académica con la que no esté de acuerdo, ante el docente o instancia que emitió la evaluación.",
+      "categoria": "normativa_academica",
+      "tiempo_estimado": "5-10 días hábiles para resolución",
+      "costo": "Gratuito",
+      "oficina": "Departamento / Facultad correspondiente al curso",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/secretaria-general/reglamento-estudiantil",
+      "keywords": ["recurso", "reposición", "calificación", "nota", "apelación", "inconformidad", "revisión", "recurso de reposición", "impugnar nota", "apelar calificación", "revisión de nota", "inconformidad nota"],
+      "pasos": [
+        "1. Revisar el Reglamento Estudiantil (Acuerdo Superior 1) para conocer los plazos y condiciones del recurso de reposición.",
+        "2. Verificar que estás dentro del plazo establecido para interponer el recurso (generalmente 5 días hábiles después de conocida la calificación).",
+        "3. Redactar la solicitud escrita dirigida al docente o coordinador del curso, indicando: nombre completo, código estudiantil, asignatura, grupo, calificación impugnada y argumentos claros de la inconformidad.",
+        "4. Adjuntar las evidencias que sustenten tu solicitud (parciales, talleres, criterios de evaluación, etc.).",
+        "5. Radicar el recurso ante la Secretaría del Departamento o Facultad correspondiente, solicitando acuse de recibo.",
+        "6. Guardar el comprobante de radicación con fecha y sello.",
+        "7. Esperar la respuesta del docente o instancia evaluadora dentro del plazo reglamentario (5-10 días hábiles).",
+        "8. Si el recurso de reposición es negado, puedes interponer recurso de apelación ante el Comité de Carrera en los plazos establecidos."
+      ],
+      "documentos_requeridos": [
+        "Carta o solicitud escrita de recurso de reposición (firmada por el estudiante)",
+        "Copia de la calificación o acto administrativo que se impugna",
+        "Evidencias de soporte (exámenes, talleres, rúbricas, correos del docente si aplica)",
+        "Documento de identidad",
+        "Carné estudiantil"
+      ],
+      "advertencias": [
+        "El recurso debe interponerse dentro de los plazos establecidos en el Reglamento Estudiantil; los recursos extemporáneos no serán admitidos.",
+        "El recurso debe sustentarse con argumentos claros y concretos; una inconformidad genérica puede ser rechazada.",
+        "El docente tiene la facultad de mantener, aumentar o disminuir la nota tras la revisión.",
+        "Si no estás satisfecho con la respuesta, el recurso de apelación es la siguiente instancia formal.",
+        "Conserva siempre copias de todos los documentos radicados y las respuestas recibidas."
+      ]
+    }
+  ]
+}

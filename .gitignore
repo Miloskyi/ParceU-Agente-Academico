@@ -1,0 +1,29 @@
+# Secretos y configuración local
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# ChromaDB (generado por run_ingesta.py)
+data/chroma_db/
+
+# PDFs normativos (descargar manualmente de normativa.udea.edu.co)
+data/raw/*.pdf
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Imágenes grandes (logos en data/)
+data/*.png
+
+# Logs
+*.log

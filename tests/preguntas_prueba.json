@@ -1,0 +1,34 @@
+{
+  "preguntas": [
+    {
+      "id": 1,
+      "pregunta": "¿Cuántas materias puedo cancelar sin perder el cupo?",
+      "intencion_esperada": "normativa",
+      "keywords_respuesta": ["cancelar", "materia", "reglamento"]
+    },
+    {
+      "id": 2,
+      "pregunta": "¿Qué documentos necesito para inscribir trabajo de grado?",
+      "intencion_esperada": "trámite",
+      "keywords_respuesta": ["trabajo de grado", "documento", "formulario"]
+    },
+    {
+      "id": 3,
+      "pregunta": "Quedé en prueba académica, ¿qué hago?",
+      "intencion_esperada": "urgente",
+      "keywords_respuesta": ["prueba académica", "registro", "secretaría"]
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Cuál es la fecha límite de matrícula este semestre?",
+      "intencion_esperada": "calendario",
+      "keywords_respuesta": ["matrícula", "fecha", "plazo"]
+    },
+    {
+      "id": 5,
+      "pregunta": "¿Cómo solicito una transferencia interna?",
+      "intencion_esperada": "trámite",
+      "keywords_respuesta": ["transferencia", "solicitud", "programa"]
+    }
+  ]
+}
