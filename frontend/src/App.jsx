@@ -4,9 +4,15 @@ import ChatTab from './components/ChatTab'
 import TramitesTab from './components/TramitesTab'
 import CalendarioTab from './components/CalendarioTab'
 import AnalyticsTab from './components/AnalyticsTab'
+import LandingPage from './components/LandingPage'
 
 export default function App() {
+  const [view, setView] = useState('landing')
   const [activeTab, setActiveTab] = useState('chat')
+
+  if (view === 'landing') {
+    return <LandingPage onEnter={() => setView('app')} />
+  }
 
   const tabs = {
     chat: <ChatTab />,
