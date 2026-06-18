@@ -1,29 +1,113 @@
-# Secretos y configuración local
-.env
+# ═══════════════════════════════════════════════════════════════════
+# PARCERU - Copiloto Administrativo UdeA
+# .gitignore - Archivos que NO se suben al repositorio
+# ═══════════════════════════════════════════════════════════════════
 
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.pytest_cache/
-*.egg-info/
-dist/
-build/
+# ─── SECRETOS Y CONFIGURACIÓN SENSIBLE ─────────────────────────────
+.env                                 # Variables de entorno (API keys)
+.env.local                          # Variables locales de desarrollo
+.env.production                     # Variables de producción  
+config/secrets.json                 # Archivos de configuración sensible
+*.key                              # Archivos de llaves privadas
+*.pem                              # Certificados SSL
 
-# ChromaDB (generado por run_ingesta.py)
-data/chroma_db/
+# ─── PYTHON BACKEND ────────────────────────────────────────────────
+__pycache__/                       # Cache de Python compilado
+*.pyc                              # Archivos Python compilados
+*.pyo                              # Python optimizado
+*.pyd                              # Extensiones Python Windows
+.pytest_cache/                     # Cache de pytest
+*.egg-info/                        # Metadatos de paquetes
+dist/                              # Distribuciones de paquetes
+build/                             # Archivos de build
+venv/                              # Virtual environment
+env/                               # Alternative venv name
+.venv/                             # Hidden venv folder
 
-# PDFs normativos (descargar manualmente de normativa.udea.edu.co)
-data/raw/*.pdf
+# ─── DATOS Y BASE VECTORIAL ────────────────────────────────────────
+data/chroma_db/                    # Base vectorial (generada por run_ingesta.py)
+data/raw/*.pdf                     # PDFs normativos (descargar manualmente)
+data/backups/                      # Backups automáticos
+*.sqlite3                          # Bases de datos SQLite
+doc_watcher_state.json            # Estado del monitoreo de documentos
 
-# Node / Frontend
-frontend/node_modules/
-frontend/dist/
-frontend/.vite/
+# ─── FRONTEND REACT ────────────────────────────────────────────────
+frontend/node_modules/             # Dependencias Node.js
+frontend/dist/                     # Build de producción
+frontend/.vite/                    # Cache de Vite
+frontend/.next/                    # Cache de Next.js (si se usa)
+frontend/coverage/                 # Reportes de coverage
+frontend/build/                    # Build alternativo
 
-# Imágenes grandes (logos en data/)
-data/*.png
+# ─── LOGS Y MONITOREO ──────────────────────────────────────────────
+*.log                              # Archivos de log
+logs/                              # Directorio de logs
+app.log                            # Log principal de aplicación
+error.log                          # Log de errores
+access.log                         # Log de acceso HTTP
 
-# Logs
-*.log
+# ─── TESTING ───────────────────────────────────────────────────────
+.coverage                          # Coverage de Python
+htmlcov/                           # Reportes HTML de coverage
+.pytest_cache/                     # Cache de pytest
+test-results/                      # Resultados de tests
+coverage/                          # Directorio de coverage
+
+# ─── EDITORES E IDEs ───────────────────────────────────────────────
+.vscode/settings.json              # Configuración específica VSCode
+.vscode/launch.json               # Debug configs VSCode
+.idea/                            # IntelliJ IDEA
+*.swp                             # Vim swap files
+*.swo                             # Vim additional swap
+*~                                # Backup files
+.DS_Store                         # macOS file system
+Thumbs.db                         # Windows thumbnails
+
+# ─── DEPLOYMENT Y DOCKER ──────────────────────────────────────────
+.docker/                          # Docker configs locales
+docker-compose.override.yml       # Override de docker-compose
+.dockerignore                     # Docker ignore específico
+
+# ─── TEMPORALES Y CACHE ────────────────────────────────────────────
+tmp/                              # Archivos temporales
+temp/                             # Directorio temporal
+.tmp/                             # Archivos temporales hidden
+*.tmp                             # Extensiones temporales
+.cache/                           # Cache general
+
+# ─── ASSETS GRANDES ────────────────────────────────────────────────
+data/*.png                        # Imágenes grandes (logos UdeA)
+data/*.jpg                        # Imágenes JPEG
+data/*.jpeg                       # Imágenes JPEG alternative
+data/*.gif                        # GIFs animados
+*.mp4                             # Videos
+*.avi                             # Videos AVI
+*.mov                             # Videos QuickTime
+
+# ─── ARCHIVOS DEL SISTEMA ──────────────────────────────────────────
+.env.*                            # Cualquier variante de .env
+*.pid                             # Process ID files
+*.sock                            # Socket files
+*.lock                            # Lock files
+
+# ─── ANALYTICS Y MÉTRICAS ──────────────────────────────────────────
+analytics_data/                   # Datos de analytics locales
+metrics/                          # Métricas exportadas
+*.csv                             # Exports de datos
+*.xlsx                            # Excel exports
+
+# ─── CERTIFICADOS Y SSL ────────────────────────────────────────────
+ssl/                              # Certificados SSL
+certs/                            # Directorio de certificados
+*.crt                             # Archivos de certificado
+*.csr                             # Certificate signing requests
+
+# ─── DOCUMENTACIÓN GENERADA ────────────────────────────────────────
+docs/_build/                      # Sphinx build
+site/                             # MkDocs build
+
+# ─── ESPECÍFICOS DEL PROYECTO ──────────────────────────────────────
+preguntas_prueba_resultados.json # Resultados de tests del hackathon
+
+.vercel
+.env*

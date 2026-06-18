@@ -1,36 +1,67 @@
-# Copiloto Administrativo Agéntico — Universidad de Antioquia
+# PARCERU - Copiloto Administrativo Inteligente UdeA
 # Python 3.11+
+# Generado: Hackathon UdeA 2026 - Equipo Softserve
 
-# Orquestación de agentes
-langgraph>=0.2
-langchain>=0.3
-langchain-text-splitters>=0.3
-langchain-groq>=0.2
-langchain-openai>=0.3
+# ═══════════════════════════════════════════════════════════════════
+# CORE - Orquestación de agentes multi-LLM
+# ═══════════════════════════════════════════════════════════════════
+langgraph>=0.2.28                    # Sistema multi-agente con grafo de estados
+langchain>=0.3.0                     # Framework LLM con abstracciones
+langchain-text-splitters>=0.3.0      # Chunking inteligente de documentos
+langchain-groq>=0.2.0               # Integración Groq API (LLM gratuito)
+langchain-openai>=0.3.0             # Integración OpenAI (embeddings premium)
 
-# Base de datos vectorial
-chromadb>=0.5
+# ═══════════════════════════════════════════════════════════════════
+# DATABASE - Búsqueda vectorial y almacenamiento
+# ═══════════════════════════════════════════════════════════════════
+chromadb>=0.5.6                     # Base de datos vectorial local
+sentence-transformers>=3.0.1        # Embeddings gratuitos offline (fallback)
 
-# API REST
-fastapi>=0.111
-uvicorn[standard]>=0.30
+# ═══════════════════════════════════════════════════════════════════
+# API - Servidor web y endpoints REST
+# ═══════════════════════════════════════════════════════════════════
+fastapi>=0.111.0                    # Framework API REST moderno
+uvicorn[standard]>=0.30.0           # Servidor ASGI con auto-reload
+pydantic>=2.8.0                     # Validación de datos y serialización
 
-# Cliente HTTP
-httpx>=0.27
+# ═══════════════════════════════════════════════════════════════════
+# HTTP CLIENT - Requests y web scraping
+# ═══════════════════════════════════════════════════════════════════
+httpx>=0.27.0                       # Cliente HTTP asíncrono moderno
+beautifulsoup4>=4.12.3              # Parser HTML para web scraping
+playwright>=1.44.0                  # Browser automation (SIA scraper)
 
-# Procesamiento de PDFs
-pymupdf>=1.24
-pdfplumber>=0.11
+# ═══════════════════════════════════════════════════════════════════
+# PDF PROCESSING - Extracción de texto y tablas
+# ═══════════════════════════════════════════════════════════════════
+pymupdf>=1.24.9                     # Extracción rápida de texto PDFs
+pdfplumber>=0.11.4                  # Extracción de tablas y layout PDFs
 
-# Embeddings fallback gratuito
-sentence-transformers>=3.0
+# ═══════════════════════════════════════════════════════════════════
+# SCHEDULING - Tareas automáticas y monitoreo
+# ═══════════════════════════════════════════════════════════════════
+apscheduler>=3.10.4                 # Scheduler para DocWatcher automático
 
-# Scheduler (DocWatcher)
-apscheduler>=3.10
+# ═══════════════════════════════════════════════════════════════════
+# UTILITIES - Configuración y helpers
+# ═══════════════════════════════════════════════════════════════════
+python-dotenv>=1.0.1                # Variables de entorno desde .env
+python-multipart>=0.0.9             # Form data para FastAPI uploads
 
-# Scraping
-beautifulsoup4>=4.12
-playwright>=1.44
+# ═══════════════════════════════════════════════════════════════════
+# DEVELOPMENT - Testing y code quality (dev only)
+# ═══════════════════════════════════════════════════════════════════
+pytest>=8.2.2                       # Framework de testing
+pytest-asyncio>=0.23.7              # Testing para funciones async
+pytest-cov>=5.0.0                   # Coverage reporting
+hypothesis>=6.104.2                 # Property-based testing
+black>=24.4.2                       # Formateo automático de código
+isort>=5.13.2                       # Organización de imports
+flake8>=7.1.0                       # Linting y style checking
 
-# Utilidades
-python-dotenv>=1.0
+# ═══════════════════════════════════════════════════════════════════
+# PRODUCTION - Deployment y monitoring (prod only)  
+# ═══════════════════════════════════════════════════════════════════
+gunicorn>=22.0.0                    # WSGI server para producción
+prometheus-client>=0.20.0           # Métricas para monitoreo
+sentry-sdk[fastapi]>=2.8.0          # Error tracking y performance
