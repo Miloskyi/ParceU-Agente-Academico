@@ -22,5 +22,5 @@ RUN mkdir -p data/chroma_db data/raw data/tramites
 # Puerto expuesto
 EXPOSE 8000
 
-# Comando de inicio
+# Comando de inicio con puerto fijo
 CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
