@@ -1,6 +1,7 @@
 ﻿import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { RefreshCw, MessageSquare, AlertTriangle, CheckCircle } from 'lucide-react'
+import API_BASE from '../api'
 
 const C = { petroleo: '#006065', turquesa: '#069A7E', verde: '#C5E1A5', oscuro: '#004548' }
 
@@ -22,7 +23,7 @@ export default function AnalyticsTab() {
 
   const cargar = () => {
     setLoading(true)
-    axios.get('/api/analytics')
+    axios.get(`${API_BASE}/api/analytics`)
       .then(r => setData(r.data))
       .catch(() => setData(null))
       .finally(() => setLoading(false))

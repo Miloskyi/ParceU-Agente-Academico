@@ -1,6 +1,7 @@
 ﻿import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Clock, Building2, ExternalLink, ChevronRight, X, AlertCircle, FileText, CheckCircle } from 'lucide-react'
+import API_BASE from '../api'
 
 const C = { petroleo: '#006065', turquesa: '#069A7E', verde: '#C5E1A5', oscuro: '#004548' }
 const ICONOS = ['📄', '❌', '🎓', '💰', '📝', '🏛️', '✅', '🔄']
@@ -111,7 +112,7 @@ export default function TramitesTab() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    axios.get('/api/tramites')
+    axios.get(`${API_BASE}/api/tramites`)
       .then(r => setTramites(r.data.tramites || []))
       .catch(() => setTramites([]))
       .finally(() => setLoading(false))

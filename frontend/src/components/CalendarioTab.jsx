@@ -1,6 +1,7 @@
 ﻿import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Calendar, AlertCircle, AlertTriangle } from 'lucide-react'
+import API_BASE from '../api'
 
 const C = { petroleo: '#006065', turquesa: '#069A7E', verde: '#C5E1A5' }
 
@@ -32,7 +33,7 @@ export default function CalendarioTab() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    axios.get('/api/calendario')
+    axios.get(`${API_BASE}/api/calendario`)
       .then(r => {
         const lista = r.data.semestres ?? []
         setSemestres(lista)

@@ -2,6 +2,7 @@
 import axios from 'axios'
 import ReactMarkdown from 'react-markdown'
 import { Send, RefreshCw, AlertTriangle, ChevronDown, ChevronUp, GraduationCap, User } from 'lucide-react'
+import API_BASE from '../api'
 
 const PERFILES = [
   { value: 'pregrado',       label: 'Estudiante Pregrado' },
@@ -229,7 +230,7 @@ export default function ChatTab({ messages, setMessages, perfil, setPerfil }) {
     }])
     setLoading(true)
     try {
-      const { data } = await axios.post('/api/chat', { mensaje: msg, perfil })
+      const { data } = await axios.post(`${API_BASE}/api/chat`, { mensaje: msg, perfil })
       setMessages(prev => [...prev, {
         role: 'assistant',
         content: data.respuesta,
