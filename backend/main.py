@@ -28,16 +28,29 @@ load_dotenv(_RAIZ / ".env")
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from backend.config import get_cors_regex, allow_all_cors
 
 app = FastAPI(title="Copiloto Administrativo UdeA", version="1.0.0")
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origin_regex=r"https://.*\.vercel\.app$|http://localhost:.*|http://127\.0\.0\.1:.*",
-    allow_credentials=False,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# Configuración de CORS
+if allow_all_cors():
+    # Modo debug: permite todos los orígenes (solo para desarrollo/troubleshooting)
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=False,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+else:
+    # Modo producción: usa regex pattern para dominios específicos
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origin_regex=get_cors_regex(),
+        allow_credentials=False,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 
 # ── Arrancar DocWatcher scheduler al iniciar la app ──────────────────────────
