@@ -1,6 +1,7 @@
 FROM python:3.11-slim
 
 # Dependencias del sistema para sentence-transformers y chromadb
+# Build v3 - puerto fijo 8000
 RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
