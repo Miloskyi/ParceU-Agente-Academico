@@ -22,6 +22,7 @@ from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from agentes.estado import EstadoCopiloto
+from utils.analytics import registrar_consulta
 from utils.formateador import formatear_cita, formatear_pasos, formatear_fechas
 from utils.logger import get_logger
 
@@ -352,6 +353,18 @@ def answerer_node(estado: EstadoCopiloto) -> dict:
             texto_respuesta += disclaimer
             logger.info("Answerer: disclaimer de verificación agregado (%d alertas previas)", len(alertas_prev))
 
+        # Registrar en analytics (envuelto en try/except independiente para no interrumpir la respuesta)
+        try:
+            registrar_consulta(
+                intencion=estado.get("intencion", "desconocida"),
+                perfil_usuario=estado.get("perfil_usuario", "desconocido"),
+                calidad_final="pendiente",  # el Grader actualizará este valor
+                agente_usado=agente_usado,  # usar el valor recién calculado, no el del estado anterior
+                es_urgente=estado.get("es_urgente", False),
+            )
+        except Exception as _analytics_exc:
+            logger.warning("No se pudo registrar consulta en analytics: %s", _analytics_exc)
+
         return {
             "respuesta_candidata": texto_respuesta,
             "fuentes_citadas": fuentes_citadas,
@@ -360,6 +373,19 @@ def answerer_node(estado: EstadoCopiloto) -> dict:
 
     except Exception as exc:
         logger.error("Answerer: error inesperado: %s", exc, exc_info=True)
+
+        # Registrar el error en analytics
+        try:
+            registrar_consulta(
+                intencion=estado.get("intencion", "desconocida"),
+                perfil_usuario=estado.get("perfil_usuario", "desconocido"),
+                calidad_final="error",
+                agente_usado="error",
+                es_urgente=estado.get("es_urgente", False),
+            )
+        except Exception:
+            pass  # No interrumpir el flujo de error existente
+
         return {
             "respuesta_candidata": (
                 "Lo siento, ocurrió un error al generar la respuesta. "

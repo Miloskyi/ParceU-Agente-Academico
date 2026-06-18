@@ -225,7 +225,54 @@ El sistema está dirigido principalmente a los 8.000 estudiantes de la Facultad 
 
 ---
 
-### Requirement 14: Calidad del Código y Pruebas
+### Requirement 15: Extracción de Documentos en Tiempo Real (Runtime Extractor)
+
+**User Story:** Como usuario, quiero que el sistema acceda a documentos normativos que no fueron pre-indexados, descargándolos y procesándolos en el momento de mi consulta, para obtener respuestas sobre cualquier resolución o acuerdo de la UdeA sin importar cuándo fue publicado.
+
+#### Acceptance Criteria
+
+1. WHEN el Search_Agent no encuentra información suficiente en el RAG local, THE Runtime_Extractor SHALL consultar `normativa.udea.edu.co/Documentos/Consultar?search=TÉRMINO` con el término reformulado de la consulta del usuario.
+2. WHEN el portal normativo retorna resultados, THE Runtime_Extractor SHALL descargar hasta 3 PDFs relevantes directamente en memoria (sin guardarlos en disco) con timeout de 20 segundos por PDF.
+3. WHEN un PDF es descargado en memoria, THE Runtime_Extractor SHALL extraer su texto usando PyMuPDF y dividirlo en chunks de máximo 700 caracteres con solapamiento de 120 caracteres.
+4. WHEN los chunks son generados, THE Runtime_Extractor SHALL retornarlos con metadatos: {contenido, fuente, url_origen, fecha_publicacion, tipo: "runtime_pdf"}.
+5. IF PyMuPDF no está disponible, THEN THE Runtime_Extractor SHALL usar pypdf como fallback para la extracción de texto.
+6. IF el portal normativo no está accesible o el PDF no es legible, THEN THE Runtime_Extractor SHALL retornar lista vacía sin interrumpir el flujo del grafo.
+7. THE Runtime_Extractor SHALL completar el pipeline completo (búsqueda + descarga + extracción) en menos de 35 segundos totales.
+
+---
+
+### Requirement 16: Monitoreo y Actualización Automática de Documentos (DocWatcher)
+
+**User Story:** Como administrador del sistema, quiero que los documentos indexados se actualicen automáticamente cuando cambie su contenido, para que el sistema siempre tenga información vigente sin intervención manual.
+
+#### Acceptance Criteria
+
+1. WHEN un documento es registrado en el DocWatcher, THE DocWatcher SHALL calcular y almacenar el hash SHA-256 del contenido del PDF junto con el timestamp de registro.
+2. WHEN el scheduler del DocWatcher ejecuta un ciclo, THE DocWatcher SHALL verificar cada documento registrado descargando su contenido y comparando el hash actual con el almacenado.
+3. IF el hash de un documento cambió, THEN THE DocWatcher SHALL re-descargar el PDF, eliminar los chunks viejos de ChromaDB y re-indexar los nuevos chunks del documento actualizado.
+4. THE DocWatcher SHALL verificar documentos normativos cada 6 horas y datos del SIA cada 1 hora.
+5. WHEN el DocWatcher detecta un cambio en un documento, THE DocWatcher SHALL registrar el evento con timestamp en el log del sistema y actualizar el campo `ultima_actualizacion` del registro.
+6. THE DocWatcher SHALL exponer `forzar_actualizacion(url)` que permite re-indexar un documento manualmente independientemente de si su hash cambió.
+7. THE DocWatcher SHALL persistir el estado de todos los documentos monitoreados en `data/doc_watcher_state.json` para sobrevivir reinicios del sistema.
+8. THE DocWatcher SHALL correr en un hilo daemon separado sin bloquear el flujo principal del grafo.
+9. THE backend SHALL exponer los endpoints `/api/documentos/estado`, `/api/documentos/actualizar` y `/api/documentos/registrar` para gestionar el DocWatcher desde el frontend.
+
+---
+
+### Requirement 17: Consulta de Oferta Académica en Tiempo Real (SIA Scraper)
+
+**User Story:** Como estudiante, quiero saber si hay cupos disponibles en una materia específica y su horario actual, sin tener que ingresar manualmente al SIA, para tomar decisiones de inscripción más rápido.
+
+#### Acceptance Criteria
+
+1. WHEN la consulta del usuario contiene palabras clave relacionadas con oferta académica (cupos, horario, materia, curso, créditos, docente), THE Search_Agent SHALL activar el SIA_Scraper para consultar datos en tiempo real.
+2. WHEN el SIA_Scraper es invocado, THE SIA_Scraper SHALL realizar una petición HTTP al portal de oferta académica del SIA con timeout de 15 segundos.
+3. WHEN el SIA retorna resultados, THE SIA_Scraper SHALL extraer: código del curso, nombre, créditos, cupos disponibles, horario y docente asignado.
+4. THE SIA_Scraper SHALL implementar un caché en memoria con TTL de 1 hora para evitar consultas repetidas al portal del SIA.
+5. IF el portal SIA no está accesible, THEN THE SIA_Scraper SHALL retornar datos de ejemplo claramente marcados como ilustrativos sin interrumpir el flujo del grafo.
+6. WHEN el Answerer presenta datos del SIA, THE Answerer SHALL incluir el timestamp de la consulta y la etiqueta "(tiempo real)" para distinguir estos datos de los documentos pre-indexados.
+7. THE backend SHALL exponer el endpoint `/api/sia/oferta?q=TÉRMINO` para que el frontend pueda consultar el SIA directamente.
+8. THE SIA_Scraper SHALL detectar automáticamente si la respuesta del portal es JSON o HTML y usar el parser apropiado para cada caso.
 
 **User Story:** Como miembro del equipo, quiero tener pruebas básicas que validen los componentes críticos, para poder verificar que el sistema funciona correctamente antes de la demo.
 

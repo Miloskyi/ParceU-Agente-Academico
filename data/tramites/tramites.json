@@ -8,7 +8,7 @@
       "costo": "Gratuito para estudiantes activos",
       "oficina": "Registro y Control Académico",
       "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/registro-control",
-      "keywords": ["certificado", "notas", "historial", "calificaciones", "académico", "récord", "historial académico", "constancia de notas", "record académico"],
+      "keywords": ["certificado", "notas", "historial", "calificaciones", "académico", "récord", "historial académico", "constancia de notas", "record académico", "certificado de notas", "notas del semestre", "mis notas", "resultado académico", "boletin", "boletín"],
       "pasos": [
         "1. Ingresar al Portal Universitario (portaludea.udea.edu.co) con tu usuario y contraseña institucional.",
         "2. Navegar al menú Servicios Académicos → Solicitud de Certificados.",
@@ -38,7 +38,7 @@
       "costo": "Gratuito",
       "oficina": "Registro y Control Académico / Portal Universitario",
       "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/registro-control/cancelacion-asignaturas",
-      "keywords": ["cancelar", "cancelación", "materia", "asignatura", "retirar", "eliminar", "baja", "retirar materia", "cancelar asignatura", "baja de materia"],
+      "keywords": ["cancelar", "cancelación", "cancelacion", "materia", "asignatura", "retirar", "eliminar", "baja", "retirar materia", "cancelar asignatura", "baja de materia", "dar de baja", "quitar materia", "borrar materia", "cancelar curso", "retirar curso", "cancelar clase"],
       "pasos": [
         "1. Verificar en el calendario académico que se está dentro del periodo habilitado para cancelación de materias.",
         "2. Ingresar al Portal Universitario con tu usuario y contraseña institucional.",
@@ -70,7 +70,7 @@
       "costo": "Gratuito",
       "oficina": "Coordinación de Trabajo de Grado de la Facultad / Registro y Control Académico",
       "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/investigacion/trabajo-grado",
-      "keywords": ["trabajo de grado", "tesis", "proyecto", "grado", "inscribir", "modalidad", "director", "inscripción grado", "proyecto de grado", "anteproyecto", "opción de grado", "titulación"],
+      "keywords": ["trabajo de grado", "tesis", "proyecto", "grado", "inscribir", "modalidad", "director", "inscripción grado", "inscripcion grado", "proyecto de grado", "anteproyecto", "opción de grado", "opcion de grado", "titulación", "titulacion", "trabajo grado", "inscribir tesis", "director de tesis", "director tesis", "propuesta grado", "monografía", "monografia", "emprendimiento grado", "pasantia grado", "pasantía grado"],
       "pasos": [
         "1. Verificar que cumples con los requisitos previos: porcentaje de créditos aprobados según el plan de estudios (generalmente 70% o más).",
         "2. Seleccionar la modalidad de trabajo de grado disponible en tu programa (tesis, proyecto aplicado, pasantía, etc.).",
@@ -168,6 +168,505 @@
         "El docente tiene la facultad de mantener, aumentar o disminuir la nota tras la revisión.",
         "Si no estás satisfecho con la respuesta, el recurso de apelación es la siguiente instancia formal.",
         "Conserva siempre copias de todos los documentos radicados y las respuestas recibidas."
+      ]
+    },
+    {
+      "nombre": "Liquidación y Pago de Matrícula",
+      "descripcion": "Proceso para liquidar el valor de la matrícula financiera del período académico vigente y realizar el pago correspondiente según el estrato socioeconómico, programa y modalidad del estudiante en la Universidad de Antioquia.",
+      "categoria": "financiero",
+      "tiempo_estimado": "1-2 días hábiles para liquidación; pago inmediato en entidad bancaria",
+      "costo": "Variable según estrato, programa y derechos de matrícula vigentes",
+      "oficina": "Gestión Financiera / Portal Universitario",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/gestion-financiera/matricula",
+      "keywords": ["matrícula", "pago matrícula", "liquidación", "financiero", "derechos de matrícula", "recibo de pago", "valor matrícula", "pago semestre", "costo matrícula", "liquidar matrícula"],
+      "pasos": [
+        "1. Ingresar al Portal Universitario (portaludea.udea.edu.co) con usuario y contraseña institucional.",
+        "2. Ir a la sección Servicios Financieros → Liquidación de Matrícula.",
+        "3. Verificar que el estrato, programa y datos personales sean correctos antes de generar la liquidación.",
+        "4. Generar el recibo de pago con el valor calculado según los derechos de matrícula del período.",
+        "5. Descargar o imprimir el recibo de pago generado.",
+        "6. Realizar el pago en las entidades bancarias autorizadas (Bancolombia, PSE u otras habilitadas) dentro de las fechas del calendario académico.",
+        "7. Conservar el comprobante de pago como soporte de la transacción.",
+        "8. Verificar en el portal que el estado de matrícula cambie a 'Activo' una vez acreditado el pago."
+      ],
+      "documentos_requeridos": [
+        "Acceso al Portal Universitario (usuario y contraseña institucional)",
+        "Documento de identidad vigente",
+        "Recibo de liquidación generado en el portal",
+        "Comprobante de pago bancario (para verificación en caso de inconvenientes)"
+      ],
+      "advertencias": [
+        "El pago debe realizarse dentro de las fechas habilitadas en el calendario académico; pagos extemporáneos pueden generar recargos o pérdida del cupo.",
+        "Verificar el valor liquidado antes de pagar; errores en el estrato o programa deben corregirse en Gestión Financiera antes del pago.",
+        "El no pago de matrícula dentro del plazo implica la pérdida del derecho de inscripción para el período.",
+        "Los estudiantes con beca o descuento deben verificar que el beneficio esté aplicado antes de generar el recibo.",
+        "Guardar el comprobante de pago durante todo el período académico como soporte ante cualquier inconveniente."
+      ]
+    },
+    {
+      "nombre": "Transferencia Interna entre Programas",
+      "descripcion": "Trámite que permite a un estudiante activo de la Universidad de Antioquia solicitar el cambio de programa académico dentro de la misma institución, conservando el historial académico y los créditos homologables.",
+      "categoria": "gestion_academica",
+      "tiempo_estimado": "15-30 días hábiles (evaluación por Comité de Admisiones y Carrera)",
+      "costo": "Gratuito",
+      "oficina": "Registro y Control Académico / Coordinación del programa destino",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/registro-control/transferencias",
+      "keywords": ["transferencia", "cambio de programa", "transferencia interna", "traslado de carrera", "cambio de carrera", "nuevo programa", "admisión interna", "movilidad académica", "traslado programa"],
+      "pasos": [
+        "1. Consultar los requisitos específicos del programa destino en la coordinación de esa carrera.",
+        "2. Verificar que cumples con el promedio acumulado mínimo exigido para la transferencia (generalmente 3.0 o superior).",
+        "3. Obtener el formulario de solicitud de transferencia interna en Registro y Control Académico.",
+        "4. Diligenciar el formulario con datos personales, programa actual, programa destino y justificación.",
+        "5. Adjuntar el certificado de notas actualizado y los documentos de soporte requeridos.",
+        "6. Radicar la solicitud dentro de las fechas habilitadas para transferencias en el calendario académico.",
+        "7. Esperar la evaluación del Comité de Admisiones del programa destino (15-30 días hábiles).",
+        "8. Recibir notificación del resultado por correo institucional.",
+        "9. Si es aprobada, formalizar la inscripción en el nuevo programa en Registro y Control Académico."
+      ],
+      "documentos_requeridos": [
+        "Formulario de solicitud de transferencia interna",
+        "Certificado de notas del programa actual",
+        "Documento de identidad",
+        "Carta de motivación o justificación de la transferencia",
+        "Paz y salvo financiero del período vigente"
+      ],
+      "advertencias": [
+        "La transferencia está sujeta a la disponibilidad de cupos en el programa destino.",
+        "Los créditos homologables se determinan después de aprobada la transferencia; no todos los créditos son reconocidos automáticamente.",
+        "El promedio acumulado puede ser un requisito eliminatorio; consultarlo con anticipación en la coordinación del programa destino.",
+        "Las transferencias entre facultades pueden tener requisitos adicionales o pruebas de admisión.",
+        "El proceso puede extenderse más de lo estimado dependiendo de la carga del Comité de Admisiones."
+      ]
+    },
+    {
+      "nombre": "Solicitud de Paz y Salvo Académico",
+      "descripcion": "Documento que certifica que el estudiante o egresado no tiene obligaciones pendientes con las diferentes dependencias de la Universidad de Antioquia, requerido para trámites de grado, certificados especiales y otros procesos administrativos.",
+      "categoria": "certificados",
+      "tiempo_estimado": "3-5 días hábiles",
+      "costo": "Gratuito para trámites de grado; puede tener costo para otros propósitos",
+      "oficina": "Registro y Control Académico / múltiples dependencias universitarias",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/registro-control/paz-y-salvo",
+      "keywords": ["paz y salvo", "paz y salvo académico", "certificado de paz y salvo", "obligaciones pendientes", "deudas universidad", "constancia de paz y salvo", "paz y salvo grado", "libre de deudas"],
+      "pasos": [
+        "1. Ingresar al Portal Universitario y verificar el estado de tus obligaciones con las dependencias universitarias.",
+        "2. Resolver cualquier obligación pendiente con Biblioteca, Bienestar, Laboratorios, Gestión Financiera u otras dependencias.",
+        "3. Solicitar el paz y salvo en la ventanilla de Registro y Control Académico o a través del portal si está habilitado.",
+        "4. La dependencia verificará el estado con todas las unidades académicas y administrativas.",
+        "5. Esperar el tiempo de procesamiento (3-5 días hábiles) mientras se consolida la información de todas las dependencias.",
+        "6. Recibir el documento en formato físico o digital según el canal seleccionado.",
+        "7. Verificar que el paz y salvo esté firmado y sellado por la autoridad competente antes de usarlo."
+      ],
+      "documentos_requeridos": [
+        "Documento de identidad vigente",
+        "Carné estudiantil o código estudiantil",
+        "Solicitud escrita indicando el propósito del paz y salvo"
+      ],
+      "advertencias": [
+        "El paz y salvo tiene una vigencia limitada (generalmente 30 días); verificar la fecha de expedición.",
+        "Obligaciones pendientes con Biblioteca, Laboratorios o Gestión Financiera impedirán la expedición del documento.",
+        "Para trámites de grado, el paz y salvo es un requisito indispensable que debe gestionarse con anticipación.",
+        "El proceso puede tardar más si hay inconsistencias en los registros de alguna dependencia.",
+        "Los egresados también pueden solicitar este documento para trámites post-grado."
+      ]
+    },
+    {
+      "nombre": "Solicitud de Duplicado de Carné",
+      "descripcion": "Trámite para obtener un carné estudiantil de reposición en caso de pérdida, robo, deterioro o vencimiento del carné original de la Universidad de Antioquia.",
+      "categoria": "certificados",
+      "tiempo_estimado": "3-7 días hábiles",
+      "costo": "Costo variable según el motivo de la reposición (pérdida o deterioro tienen costo diferente)",
+      "oficina": "Registro y Control Académico",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/registro-control/carne-estudiantil",
+      "keywords": ["carné", "duplicado carné", "carné estudiantil", "reposición carné", "carné perdido", "carné deteriorado", "identificación estudiantil", "carné universitario", "nuevo carné"],
+      "pasos": [
+        "1. En caso de pérdida o robo, interponer denuncia ante las autoridades competentes (opcional pero recomendado).",
+        "2. Dirigirse a la oficina de Registro y Control Académico o consultar el portal para iniciar la solicitud.",
+        "3. Diligenciar el formulario de solicitud de duplicado de carné indicando el motivo (pérdida, robo, deterioro o vencimiento).",
+        "4. Realizar el pago del valor correspondiente en la entidad bancaria autorizada si aplica costo.",
+        "5. Entregar el formulario, comprobante de pago y documentos requeridos en la ventanilla de Registro y Control.",
+        "6. Esperar el tiempo de fabricación y entrega del nuevo carné (3-7 días hábiles).",
+        "7. Retirar el carné estudiantil en la oficina indicada presentando documento de identidad."
+      ],
+      "documentos_requeridos": [
+        "Documento de identidad vigente (cédula o tarjeta de identidad)",
+        "Formulario de solicitud de duplicado",
+        "Comprobante de pago si aplica costo",
+        "Denuncia por pérdida o robo (recomendado, puede ser requerido)"
+      ],
+      "advertencias": [
+        "El carné deteriorado debe entregarse al solicitar el duplicado.",
+        "El costo varía según el motivo; la reposición por pérdida suele tener mayor costo que por vencimiento.",
+        "El carné es el documento de identificación oficial dentro de la universidad; su uso indebido está sancionado.",
+        "El duplicado tiene la misma vigencia que el carné original renovado para el período actual.",
+        "Verificar que los datos impresos en el nuevo carné sean correctos al momento de recibirlo."
+      ]
+    },
+    {
+      "nombre": "Homologación de Materias",
+      "descripcion": "Proceso académico mediante el cual se solicita el reconocimiento de asignaturas cursadas y aprobadas en otra institución educativa o programa, para que sean equivalentes a materias del plan de estudios actual en la Universidad de Antioquia.",
+      "categoria": "gestion_academica",
+      "tiempo_estimado": "15-30 días hábiles (evaluación por Comité de Carrera)",
+      "costo": "Gratuito",
+      "oficina": "Coordinación del programa académico / Comité de Carrera",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/registro-control/homologaciones",
+      "keywords": ["homologación", "homologar materias", "reconocimiento de materias", "equivalencia de asignaturas", "convalidación", "transferencia de créditos", "materias homologadas", "reconocimiento académico", "homologar asignaturas"],
+      "pasos": [
+        "1. Consultar el plan de estudios del programa actual e identificar las materias potencialmente homologables.",
+        "2. Recopilar los certificados de notas y los contenidos programáticos de las materias a homologar de la institución de origen.",
+        "3. Solicitar el formulario de solicitud de homologación en la coordinación del programa.",
+        "4. Diligenciar el formulario indicando la materia de origen y la materia equivalente del plan de estudios actual.",
+        "5. Adjuntar los syllabus o contenidos programáticos de cada asignatura a homologar.",
+        "6. Radicar la solicitud ante la Coordinación del programa dentro de las fechas habilitadas.",
+        "7. El Comité de Carrera evalúa la equivalencia de contenidos (15-30 días hábiles).",
+        "8. Recibir la resolución del comité por correo institucional.",
+        "9. Si es aprobada, la materia se registra como homologada en el historial académico en Registro y Control."
+      ],
+      "documentos_requeridos": [
+        "Formulario de solicitud de homologación",
+        "Certificado de notas oficial de la institución de origen (apostillado si es extranjero)",
+        "Contenidos programáticos o syllabus de las asignaturas a homologar",
+        "Documento de identidad",
+        "Certificado de matrícula del programa actual"
+      ],
+      "advertencias": [
+        "La homologación no es automática; el Comité de Carrera evalúa la equivalencia de contenidos caso por caso.",
+        "Materias con menos del 80% de coincidencia en contenidos generalmente no son homologadas.",
+        "El tiempo estimado puede extenderse si el Comité solicita información adicional.",
+        "Los documentos de instituciones extranjeras deben estar apostillados y traducidos al español si aplica.",
+        "La homologación aprobada no reemplaza automáticamente los créditos en el portal; debe verificarse el registro."
+      ]
+    },
+    {
+      "nombre": "Reserva de Cupo por Período Académico",
+      "descripcion": "Trámite que permite a un estudiante activo solicitar la suspensión temporal de sus estudios por un período académico, conservando el cupo en el programa para reincorporarse en el siguiente semestre.",
+      "categoria": "gestion_academica",
+      "tiempo_estimado": "5-10 días hábiles para aprobación",
+      "costo": "Gratuito",
+      "oficina": "Registro y Control Académico / Coordinación del programa",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/registro-control/reserva-cupo",
+      "keywords": ["reserva", "reserva de cupo", "suspensión de estudios", "pausa académica", "reservar cupo", "suspender semestre", "período de gracia", "retiro temporal", "congelar semestre"],
+      "pasos": [
+        "1. Consultar el Reglamento Estudiantil para conocer los límites de reservas permitidas durante la carrera.",
+        "2. Verificar las fechas habilitadas para solicitar reserva de cupo en el calendario académico vigente.",
+        "3. Obtener el formulario de reserva de cupo en Registro y Control Académico.",
+        "4. Diligenciar el formulario con la justificación del período a reservar.",
+        "5. Adjuntar los documentos de soporte que justifiquen la solicitud (médicos, laborales, familiares, etc.).",
+        "6. Radicar la solicitud en Registro y Control o en la Coordinación del programa.",
+        "7. Esperar la aprobación por parte de la instancia competente (5-10 días hábiles).",
+        "8. Recibir confirmación por correo institucional y guardar el comprobante de la reserva aprobada."
+      ],
+      "documentos_requeridos": [
+        "Formulario de solicitud de reserva de cupo",
+        "Documento de identidad",
+        "Documentos de soporte de la justificación (certificado médico, carta de empleador, etc.)"
+      ],
+      "advertencias": [
+        "El Reglamento Estudiantil establece un límite máximo de reservas permitidas durante la carrera; excederlo puede implicar pérdida del cupo.",
+        "La reserva debe solicitarse dentro de las fechas del calendario académico; fuera de esas fechas no se garantiza la aprobación.",
+        "El estudiante con reserva no puede asistir a clases ni realizar actividades académicas durante el período reservado.",
+        "Al reintegrarse, el estudiante debe formalizar la matrícula en las fechas correspondientes.",
+        "Las obligaciones financieras del período en curso deben estar al día antes de solicitar la reserva."
+      ]
+    },
+    {
+      "nombre": "Solicitud de Reintegro",
+      "descripcion": "Trámite que permite a un estudiante que se retiró voluntariamente de la Universidad de Antioquia solicitar su readmisión al programa académico del que era estudiante, sujeto a disponibilidad de cupo y cumplimiento de requisitos.",
+      "categoria": "gestion_academica",
+      "tiempo_estimado": "15-30 días hábiles (evaluación por Comité de Admisiones)",
+      "costo": "Gratuito",
+      "oficina": "Registro y Control Académico / Coordinación del programa",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/registro-control/reintegro",
+      "keywords": ["reintegro", "readmisión", "retiro voluntario", "volver a estudiar", "reincorporación", "solicitar reintegro", "reingreso estudiante", "retomar estudios", "retiro académico"],
+      "pasos": [
+        "1. Consultar el Reglamento Estudiantil para verificar los requisitos y plazos para solicitar el reintegro.",
+        "2. Verificar que no haya transcurrido el tiempo máximo permitido para solicitar el reintegro según el reglamento.",
+        "3. Obtener el formulario de solicitud de reintegro en Registro y Control Académico.",
+        "4. Diligenciar el formulario con datos personales, programa, período de retiro y justificación del reintegro.",
+        "5. Adjuntar los documentos de soporte requeridos (paz y salvo financiero, documento de identidad, etc.).",
+        "6. Radicar la solicitud en las fechas habilitadas para reintegros en el calendario académico.",
+        "7. Esperar la evaluación del Comité de Admisiones del programa (15-30 días hábiles).",
+        "8. Recibir notificación del resultado por correo institucional.",
+        "9. Si es aprobado, formalizar la matrícula en las fechas establecidas para el período de reintegro."
+      ],
+      "documentos_requeridos": [
+        "Formulario de solicitud de reintegro",
+        "Documento de identidad vigente",
+        "Paz y salvo financiero de la universidad",
+        "Carta de motivación justificando el reintegro"
+      ],
+      "advertencias": [
+        "El reintegro está sujeto a disponibilidad de cupo en el programa; no se garantiza la aprobación.",
+        "El Reglamento Estudiantil establece un tiempo máximo para solicitar reintegro; superarlo implica pérdida definitiva del cupo.",
+        "El promedio acumulado al momento del retiro puede ser considerado en la evaluación.",
+        "El estudiante reintegrado puede quedar sujeto al plan de estudios vigente en el momento del reintegro.",
+        "Las obligaciones económicas pendientes del período anterior deben estar saldadas para acceder al reintegro."
+      ]
+    },
+    {
+      "nombre": "Inscripción de Asignaturas en Período Ordinario",
+      "descripcion": "Proceso mediante el cual el estudiante selecciona y registra formalmente las asignaturas que cursará durante el período académico siguiente, dentro de las fechas establecidas en el calendario académico de la Universidad de Antioquia.",
+      "categoria": "gestion_academica",
+      "tiempo_estimado": "Inmediato (en línea durante el período de inscripciones)",
+      "costo": "Gratuito",
+      "oficina": "Portal Universitario / Registro y Control Académico",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/registro-control/inscripcion-asignaturas",
+      "keywords": ["inscripción", "inscribir asignaturas", "período ordinario", "registro académico", "horario", "selección de materias", "inscribir materias", "período de inscripciones", "inscripción semestre", "materias próximo semestre"],
+      "pasos": [
+        "1. Consultar el calendario académico para identificar las fechas del período de inscripciones ordinarias.",
+        "2. Revisar el plan de estudios y verificar los prerrequisitos de las asignaturas que deseas cursar.",
+        "3. Ingresar al Portal Universitario (portaludea.udea.edu.co) con usuario y contraseña institucional.",
+        "4. Ir a Servicios Académicos → Inscripción de Asignaturas.",
+        "5. Consultar la oferta de grupos disponibles para cada asignatura del período.",
+        "6. Seleccionar los grupos según el horario deseado, verificando que no haya cruce de horarios.",
+        "7. Confirmar la inscripción y guardar el comprobante de materias inscritas.",
+        "8. Verificar que todas las asignaturas seleccionadas aparezcan en el horario activo."
+      ],
+      "documentos_requeridos": [
+        "Acceso al Portal Universitario (usuario y contraseña institucional)",
+        "Plan de estudios del programa actualizado",
+        "Comprobante de matrícula financiera del período vigente"
+      ],
+      "advertencias": [
+        "La inscripción solo se puede realizar durante las fechas habilitadas en el calendario académico; fuera de ellas no es posible inscribir materias sin autorización especial.",
+        "Verificar los prerrequisitos antes de inscribir; el sistema puede bloquear materias sin prerrequisito cumplido.",
+        "El número máximo de créditos por período está regulado por el Reglamento Estudiantil.",
+        "Los cruces de horario impiden la inscripción de asignaturas en conflicto.",
+        "Si necesitas inscribir una materia sin cupo disponible, debes solicitar autorización al coordinador del programa."
+      ]
+    },
+    {
+      "nombre": "Solicitud de Grado",
+      "descripcion": "Trámite formal que debe realizar el estudiante una vez ha cumplido todos los requisitos académicos y administrativos del programa para obtener el título profesional o de posgrado en la Universidad de Antioquia.",
+      "categoria": "grado",
+      "tiempo_estimado": "30-60 días hábiles (verificación de requisitos y ceremonia)",
+      "costo": "Costo por derechos de grado según tarifas vigentes",
+      "oficina": "Registro y Control Académico / Secretaría de la Facultad",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/registro-control/grado",
+      "keywords": ["grado", "solicitud de grado", "titulación", "graduación", "ceremonia de grado", "requisitos de grado", "diploma", "título universitario", "opción de grado", "trámite de grado"],
+      "pasos": [
+        "1. Verificar que has cumplido el 100% de los créditos del plan de estudios y aprobado el trabajo o modalidad de grado.",
+        "2. Solicitar el paz y salvo académico y financiero en todas las dependencias universitarias.",
+        "3. Diligenciar el formulario de solicitud de grado en la Secretaría de la Facultad o en Registro y Control Académico.",
+        "4. Adjuntar todos los documentos requeridos (paz y salvo, certificado de notas, documento de identidad, etc.).",
+        "5. Realizar el pago de los derechos de grado en la entidad bancaria autorizada.",
+        "6. Entregar la documentación completa en Registro y Control Académico dentro de las fechas establecidas.",
+        "7. Esperar la verificación de requisitos por parte de Registro y Control (30-60 días hábiles).",
+        "8. Recibir confirmación de la fecha de la ceremonia de grado por correo institucional.",
+        "9. Asistir a la ceremonia de grado y recibir el diploma correspondiente."
+      ],
+      "documentos_requeridos": [
+        "Formulario de solicitud de grado diligenciado",
+        "Paz y salvo académico y financiero de todas las dependencias",
+        "Certificado de notas con el 100% de créditos aprobados",
+        "Comprobante de aprobación del trabajo o modalidad de grado",
+        "Documento de identidad vigente",
+        "Comprobante de pago de derechos de grado",
+        "Fotografías recientes en formato y tamaño establecidos por la facultad"
+      ],
+      "advertencias": [
+        "La solicitud de grado debe realizarse dentro de las fechas establecidas para cada ceremonia de grado.",
+        "Cualquier obligación pendiente con alguna dependencia impide la expedición del paz y salvo y bloquea el proceso.",
+        "Los derechos de grado deben pagarse en las fechas indicadas; pagos extemporáneos pueden aplazar la graduación.",
+        "El proceso puede extenderse si se detectan inconsistencias en el historial académico.",
+        "Guardar el comprobante de pago de derechos de grado como soporte durante todo el proceso."
+      ]
+    },
+    {
+      "nombre": "Solicitud de Doble Titulación",
+      "descripcion": "Trámite que permite a estudiantes de posgrado o programas habilitados de pregrado solicitar la obtención simultánea o complementaria de dos títulos académicos, ya sea dentro de la misma universidad o mediante convenio con otra institución.",
+      "categoria": "grado",
+      "tiempo_estimado": "30-90 días hábiles (evaluación y aprobación institucional)",
+      "costo": "Variable según el programa y convenio interinstitucional",
+      "oficina": "Coordinación del programa / Oficina de Relaciones Internacionales e Interinstitucionales",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/internacional/doble-titulacion",
+      "keywords": ["doble titulación", "doble título", "programa complementario", "titulación simultánea", "convenio interinstitucional", "dos títulos", "titulación internacional", "doble grado", "programa doble titulación"],
+      "pasos": [
+        "1. Consultar los convenios de doble titulación vigentes disponibles para tu programa en la Oficina de Relaciones Internacionales.",
+        "2. Verificar los requisitos académicos y de idioma exigidos por el programa complementario.",
+        "3. Obtener el formulario de solicitud de doble titulación en la coordinación del programa o en Relaciones Internacionales.",
+        "4. Diligenciar el formulario con la información del programa de origen, el programa complementario y los convenios aplicables.",
+        "5. Adjuntar el certificado de notas actualizado, carta de motivación y demás documentos requeridos.",
+        "6. Radicar la solicitud en la Coordinación del programa y en Relaciones Internacionales o Interinstitucionales.",
+        "7. Esperar la evaluación y aprobación por las instancias competentes de ambas instituciones (30-90 días hábiles).",
+        "8. Si es aprobada, formalizar la inscripción en el programa complementario según las instrucciones recibidas.",
+        "9. Cumplir con los requisitos académicos de ambos programas para la obtención de los dos títulos."
+      ],
+      "documentos_requeridos": [
+        "Formulario de solicitud de doble titulación",
+        "Certificado de notas actualizado",
+        "Carta de motivación",
+        "Documento de identidad vigente",
+        "Certificado de idioma si el convenio lo requiere",
+        "Paz y salvo académico y financiero"
+      ],
+      "advertencias": [
+        "La doble titulación está disponible solo para programas con convenio vigente; verificar disponibilidad antes de solicitar.",
+        "El cumplimiento simultáneo de dos planes de estudio puede implicar una carga académica significativa.",
+        "Los convenios internacionales pueden requerir períodos de movilidad en la institución asociada.",
+        "La aprobación de ambas instituciones es requisito indispensable; la negativa de una impide el proceso.",
+        "El tiempo estimado puede variar considerablemente dependiendo de los tiempos de respuesta de la institución asociada."
+      ]
+    },
+    {
+      "nombre": "Cambio de Jornada o Modalidad",
+      "descripcion": "Trámite que permite a un estudiante activo de la Universidad de Antioquia solicitar el cambio de jornada (diurna a nocturna o viceversa) o de modalidad (presencial a distancia o virtual) dentro del mismo programa académico, sujeto a disponibilidad.",
+      "categoria": "gestion_academica",
+      "tiempo_estimado": "10-20 días hábiles (evaluación por coordinación del programa)",
+      "costo": "Gratuito",
+      "oficina": "Registro y Control Académico / Coordinación del programa",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/registro-control/cambio-jornada",
+      "keywords": ["cambio de jornada", "jornada nocturna", "jornada diurna", "modalidad", "presencial a virtual", "cambio modalidad", "jornada académica", "horario académico", "turno académico", "cambio horario"],
+      "pasos": [
+        "1. Verificar que el programa ofrece la jornada o modalidad a la que deseas cambiar.",
+        "2. Consultar en la coordinación del programa los cupos disponibles para la jornada o modalidad destino.",
+        "3. Obtener el formulario de solicitud de cambio de jornada o modalidad en Registro y Control Académico.",
+        "4. Diligenciar el formulario con la justificación del cambio solicitado.",
+        "5. Adjuntar los documentos de soporte que justifiquen la necesidad del cambio (carta de empleador, certificado médico, etc.).",
+        "6. Radicar la solicitud dentro de las fechas habilitadas en el calendario académico.",
+        "7. Esperar la evaluación por parte de la coordinación del programa y Registro y Control (10-20 días hábiles).",
+        "8. Recibir notificación del resultado por correo institucional.",
+        "9. Si es aprobado, formalizar el cambio antes del inicio del período académico siguiente."
+      ],
+      "documentos_requeridos": [
+        "Formulario de solicitud de cambio de jornada o modalidad",
+        "Documento de identidad vigente",
+        "Carta de justificación del cambio",
+        "Documentos de soporte según la justificación (carta de empleador, certificado médico, etc.)"
+      ],
+      "advertencias": [
+        "El cambio está sujeto a disponibilidad de cupos en la jornada o modalidad solicitada.",
+        "No todos los programas ofrecen múltiples jornadas o modalidades; verificar con la coordinación.",
+        "El cambio puede implicar ajustes en el plan de estudios si hay diferencias entre los planes de la jornada origen y destino.",
+        "Una vez aprobado el cambio, no se garantiza la reversión al estado anterior.",
+        "Consultar el impacto del cambio en becas o auxilios económicos que puedan estar condicionados a la jornada original."
+      ]
+    },
+    {
+      "nombre": "Reconocimiento de Saberes Previos",
+      "descripcion": "Proceso académico mediante el cual un estudiante puede solicitar que la universidad valore y reconozca conocimientos, habilidades o competencias adquiridas fuera del ámbito académico formal (experiencia laboral, formación no formal, etc.) como equivalentes a una o varias asignaturas del plan de estudios.",
+      "categoria": "normativa_academica",
+      "tiempo_estimado": "20-40 días hábiles (evaluación por Comité de Carrera)",
+      "costo": "Gratuito",
+      "oficina": "Coordinación del programa / Comité de Carrera",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/registro-control/reconocimiento-saberes",
+      "keywords": ["reconocimiento de saberes", "saberes previos", "experiencia laboral", "conocimientos previos", "validación competencias", "reconocimiento experiencia", "saberes no formales", "convalidación saberes", "reconocimiento informal"],
+      "pasos": [
+        "1. Identificar las asignaturas del plan de estudios para las cuales se solicita el reconocimiento de saberes previos.",
+        "2. Recopilar evidencias que demuestren los conocimientos o competencias adquiridas (certificados laborales, portafolios, certificados de formación no formal, etc.).",
+        "3. Solicitar el formulario de reconocimiento de saberes previos en la Coordinación del programa.",
+        "4. Diligenciar el formulario detallando los saberes a reconocer y las asignaturas equivalentes.",
+        "5. Adjuntar las evidencias documentales que respalden la solicitud.",
+        "6. Radicar la solicitud ante la Coordinación del programa.",
+        "7. El Comité de Carrera evalúa las evidencias y puede citar al estudiante para una prueba o entrevista (20-40 días hábiles).",
+        "8. Recibir la resolución del Comité por correo institucional.",
+        "9. Si es aprobado, el reconocimiento se registra en el historial académico en Registro y Control."
+      ],
+      "documentos_requeridos": [
+        "Formulario de solicitud de reconocimiento de saberes previos",
+        "Evidencias documentales de los saberes (certificados laborales, diplomas, portafolios, etc.)",
+        "Documento de identidad vigente",
+        "Descripción detallada de los saberes o competencias a reconocer"
+      ],
+      "advertencias": [
+        "El reconocimiento no es automático; el Comité de Carrera evalúa caso por caso y puede solicitar pruebas adicionales.",
+        "No todas las asignaturas son susceptibles de reconocimiento por saberes previos; consultar con la coordinación.",
+        "Las evidencias deben ser verificables y pertinentes a las competencias de la asignatura solicitada.",
+        "El proceso puede extenderse si el Comité requiere una evaluación práctica o entrevista.",
+        "El reconocimiento aprobado se registra como validación, no como una calificación cuantitativa ordinaria."
+      ]
+    },
+    {
+      "nombre": "Solicitud de Permiso de Trabajo de Campo / Práctica",
+      "descripcion": "Trámite mediante el cual el estudiante obtiene autorización formal de la universidad para realizar actividades de trabajo de campo, práctica académica o visita técnica en entornos externos a la institución, como requisito de una asignatura o programa.",
+      "categoria": "normativa_academica",
+      "tiempo_estimado": "5-10 días hábiles para aprobación del permiso",
+      "costo": "Gratuito (los costos de desplazamiento son responsabilidad del estudiante)",
+      "oficina": "Coordinación del programa / Decanatura de la Facultad",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/registro-control/practicas-academicas",
+      "keywords": ["trabajo de campo", "práctica académica", "permiso práctica", "visita técnica", "actividad campo", "práctica estudiantil", "salida de campo", "permiso institucional", "práctica curricular", "campo académico"],
+      "pasos": [
+        "1. Verificar con el docente responsable que la actividad de campo o práctica es un requisito formal de la asignatura o programa.",
+        "2. Obtener el formulario de solicitud de permiso de trabajo de campo o práctica en la Coordinación del programa.",
+        "3. Diligenciar el formulario con datos del estudiante, descripción de la actividad, lugar, fechas y docente responsable.",
+        "4. Obtener la firma del docente o coordinador que avala la actividad.",
+        "5. Adjuntar el aval de la entidad receptora si se trata de una práctica en empresa o institución externa.",
+        "6. Radicar el formulario en la Decanatura o Coordinación del programa con la antelación requerida.",
+        "7. Esperar la aprobación del permiso (5-10 días hábiles).",
+        "8. Recibir el documento de permiso firmado y conservarlo durante la realización de la actividad."
+      ],
+      "documentos_requeridos": [
+        "Formulario de solicitud de permiso de trabajo de campo o práctica",
+        "Aval del docente responsable de la asignatura",
+        "Carta de la entidad receptora (si aplica para prácticas externas)",
+        "Documento de identidad vigente",
+        "Seguro estudiantil vigente o póliza de accidentes"
+      ],
+      "advertencias": [
+        "El permiso debe tramitarse con suficiente antelación; no se aprueban solicitudes de último momento.",
+        "La realización de actividades de campo sin permiso formal puede acarrear sanciones disciplinarias.",
+        "El estudiante debe contar con seguro estudiantil vigente durante la realización de la actividad.",
+        "Las prácticas en entidades externas requieren convenio o carta de aceptación de la entidad.",
+        "Verificar que la actividad cumpla con las normas de seguridad y salud establecidas por la universidad."
+      ]
+    },
+    {
+      "nombre": "Constancia de Matrícula Activa",
+      "descripcion": "Documento oficial expedido por la Universidad de Antioquia que certifica que el estudiante se encuentra matriculado y activo en un programa académico durante el período vigente. Es requerido para trámites ante entidades externas como bancos, empleadores o entidades gubernamentales.",
+      "categoria": "certificados",
+      "tiempo_estimado": "1-3 días hábiles",
+      "costo": "Gratuito para estudiantes activos",
+      "oficina": "Registro y Control Académico / Portal Universitario",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/registro-control/constancias",
+      "keywords": ["constancia", "constancia de matrícula", "matrícula activa", "certificado de matrícula", "constancia estudiantil", "estudiante activo", "constancia inscripción", "verificar matrícula", "constancia vigente", "certificado de estudios"],
+      "pasos": [
+        "1. Ingresar al Portal Universitario (portaludea.udea.edu.co) con usuario y contraseña institucional.",
+        "2. Navegar a Servicios Académicos → Solicitud de Certificados y Constancias.",
+        "3. Seleccionar el tipo 'Constancia de Matrícula Activa' para el período académico vigente.",
+        "4. Verificar que los datos personales y del programa sean correctos.",
+        "5. Confirmar la solicitud y guardar el número de radicado generado.",
+        "6. Esperar la notificación por correo institucional (1-3 días hábiles).",
+        "7. Descargar el documento en formato digital o retirarlo en la oficina de Registro y Control si se requiere físico con sello original."
+      ],
+      "documentos_requeridos": [
+        "Acceso al Portal Universitario (usuario y contraseña)",
+        "Matrícula financiera pagada y activa para el período vigente"
+      ],
+      "advertencias": [
+        "La constancia solo puede expedirse si el estudiante tiene matrícula financiera activa para el período solicitado.",
+        "El documento digital tiene validez oficial; para algunos trámites externos puede requerirse el documento físico con sello húmedo.",
+        "La constancia tiene vigencia por el período académico indicado; no es válida para períodos anteriores.",
+        "Para estudiantes de posgrado, verificar si el programa emite la constancia directamente o a través de Registro y Control.",
+        "Si hay inconsistencias en los datos, comunicarse con Registro y Control antes de usar el documento."
+      ]
+    },
+    {
+      "nombre": "Solicitud de Préstamo en Biblioteca UdeA",
+      "descripcion": "Trámite para solicitar el préstamo de libros, revistas, materiales audiovisuales y otros recursos bibliográficos disponibles en las bibliotecas de la Universidad de Antioquia, tanto en la sede central como en las sedes regionales.",
+      "categoria": "biblioteca",
+      "tiempo_estimado": "Inmediato en sala; 1 día hábil para préstamo a domicilio",
+      "costo": "Gratuito para estudiantes, docentes y personal administrativo con carné vigente",
+      "oficina": "Sistema de Bibliotecas de la Universidad de Antioquia",
+      "url_oficial": "https://www.udea.edu.co/wps/portal/udea/web/inicio/cultura/bibliotecas",
+      "keywords": ["biblioteca", "préstamo biblioteca", "recurso bibliográfico", "libro préstamo", "catálogo biblioteca", "reserva libro", "material de biblioteca", "préstamo libros", "recurso biblioteca udea", "solicitud biblioteca"],
+      "pasos": [
+        "1. Verificar que el carné estudiantil o institucional esté vigente, ya que es el documento requerido para el préstamo.",
+        "2. Buscar el material deseado en el catálogo en línea del Sistema de Bibliotecas (biblioteca.udea.edu.co).",
+        "3. Identificar la sede bibliotecaria donde está disponible el material.",
+        "4. Dirigirse a la biblioteca correspondiente o realizar la reserva en línea si el sistema lo permite.",
+        "5. Presentar el carné vigente en la ventanilla de préstamos.",
+        "6. El bibliotecario verifica la disponibilidad y registra el préstamo.",
+        "7. Recibir el material con la fecha de devolución claramente indicada.",
+        "8. Devolver el material en la fecha estipulada para evitar sanciones o bloqueos en el sistema."
+      ],
+      "documentos_requeridos": [
+        "Carné estudiantil, docente o administrativo vigente de la Universidad de Antioquia"
+      ],
+      "advertencias": [
+        "El no retorno del material en la fecha de devolución genera multas o bloqueo del servicio de préstamos.",
+        "El carné debe estar vigente; un carné vencido impide acceder al servicio de préstamos.",
+        "Algunos materiales (obras de referencia, tesis, revistas) no están disponibles para préstamo externo.",
+        "El número máximo de materiales en préstamo simultáneo varía según el tipo de usuario.",
+        "Para acceder a recursos digitales (bases de datos, e-books), se requiere el usuario institucional de la universidad."
       ]
     }
   ]

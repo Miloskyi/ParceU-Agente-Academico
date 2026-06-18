@@ -16,6 +16,7 @@ Uso:
 """
 
 from agentes.estado import EstadoCopiloto
+from utils.analytics import actualizar_ultima_calidad
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -141,6 +142,9 @@ def grader_node(estado: EstadoCopiloto) -> dict:
             intentos_previos,
             nuevos_intentos,
         )
+
+        # Actualizar calidad en analytics
+        actualizar_ultima_calidad(calidad)
 
         return {
             "calidad": calidad,

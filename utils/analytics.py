@@ -231,6 +231,25 @@ def obtener_texto_resumen() -> str:
     return "\n".join(lineas)
 
 
+def actualizar_ultima_calidad(calidad: str) -> None:
+    """
+    Actualiza calidad_final de la última entrada registrada.
+    Es no-op si el registro está vacío.
+
+    Args:
+        calidad: Valor de calidad final ('aceptable', 'mejorar', 'sin_info', etc.)
+
+    Example:
+        >>> registrar_consulta("normativa", "pregrado", "pendiente", "RAG_Agent", False)
+        >>> actualizar_ultima_calidad("aceptable")
+        >>> obtener_registro()[-1]["calidad_final"]
+        'aceptable'
+    """
+    with _lock:
+        if _registro:
+            _registro[-1]["calidad_final"] = calidad
+
+
 def limpiar_registro() -> None:
     """
     Vacía el registro global en memoria.
@@ -269,3 +288,85 @@ def obtener_registro() -> list[dict]:
     """
     with _lock:
         return list(_registro)
+
+
+def obtener_resumen_extendido() -> dict:
+    """
+    Extiende obtener_resumen() con campos adicionales sin modificar los existentes.
+
+    Backward compatible: todos los campos de ``obtener_resumen()`` están presentes
+    sin cambios en nombre ni tipo.
+
+    Campos adicionales:
+        - ``por_calidad`` (dict str->int): Conteo por valor de ``calidad_final``.
+        - ``tasa_urgentes`` (float): ``round(urgentes/total*100, 1)`` o ``0.0`` si
+          ``total == 0``.
+        - ``agente_mas_usado`` (str): Agente con más entradas en ``por_agente``; en
+          empate, el primero alfabéticamente; ``""`` si el registro está vacío.
+        - ``intencion_mas_frecuente`` (str): Misma lógica que ``agente_mas_usado``
+          sobre ``por_intencion``.
+        - ``consultas_ultimo_minuto`` (int): Entradas cuyo ``timestamp`` es posterior
+          a ``now - 60 s``.
+
+    Returns:
+        dict con todos los campos de ``obtener_resumen()`` más los cinco campos
+        adicionales descritos arriba.
+
+    Example:
+        >>> limpiar_registro()
+        >>> registrar_consulta("normativa", "pregrado", "aceptable", "RAG_Agent", True)
+        >>> r = obtener_resumen_extendido()
+        >>> r["total"]
+        1
+        >>> r["tasa_urgentes"]
+        100.0
+        >>> r["agente_mas_usado"]
+        'RAG_Agent'
+        >>> r["consultas_ultimo_minuto"]
+        1
+    """
+    base = obtener_resumen()  # reutiliza lógica existente, backward compatible
+    with _lock:
+        copia = list(_registro)
+
+    # por_calidad
+    por_calidad: dict[str, int] = {}
+    for e in copia:
+        c = e.get("calidad_final", "desconocida")
+        por_calidad[c] = por_calidad.get(c, 0) + 1
+
+    total = base["total"]
+    urgentes = base["urgentes"]
+
+    # tasa_urgentes
+    tasa_urgentes = round(urgentes / total * 100, 1) if total > 0 else 0.0
+
+    # agente_mas_usado
+    por_agente = base["por_agente"]
+    agente_mas_usado = (
+        min(k for k, v in por_agente.items() if v == max(por_agente.values()))
+        if por_agente else ""
+    )
+
+    # intencion_mas_frecuente
+    por_intencion = base["por_intencion"]
+    intencion_mas_frecuente = (
+        min(k for k, v in por_intencion.items() if v == max(por_intencion.values()))
+        if por_intencion else ""
+    )
+
+    # consultas_ultimo_minuto
+    ahora = datetime.now()
+    consultas_ultimo_minuto = sum(
+        1 for e in copia
+        if (ahora - datetime.fromisoformat(e["timestamp"])).total_seconds() <= 60
+    )
+
+    return {
+        **base,
+        "por_calidad": por_calidad,
+        "tasa_urgentes": tasa_urgentes,
+        "agente_mas_usado": agente_mas_usado,
+        "intencion_mas_frecuente": intencion_mas_frecuente,
+        "consultas_ultimo_minuto": consultas_ultimo_minuto,
+    }

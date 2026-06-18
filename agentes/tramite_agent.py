@@ -14,6 +14,7 @@ Uso:
 
 import json
 import os
+import unicodedata
 from pathlib import Path
 from typing import Optional
 
@@ -65,12 +66,26 @@ def _cargar_tramites() -> dict:
     return datos
 
 
+def _normalizar(texto: str) -> str:
+    """
+    Normaliza un texto para matching robusto:
+    - Minúsculas
+    - Elimina tildes / diacríticos (café → cafe, práctica → practica)
+    - Colapsa espacios múltiples
+    """
+    nfkd = unicodedata.normalize("NFKD", texto.lower())
+    sin_tildes = "".join(c for c in nfkd if not unicodedata.combining(c))
+    return " ".join(sin_tildes.split())
+
+
 def _buscar_tramite_relevante(tramites: list, pregunta: str) -> tuple[Optional[dict], int]:
     """
     Encuentra el trámite con mayor puntuación de coincidencia de keywords.
 
     Por cada trámite suma 1 punto por cada keyword que aparezca como
-    subcadena en la versión en minúsculas de la pregunta.
+    subcadena en la versión normalizada (sin tildes, minúsculas) de la
+    pregunta. La normalización hace que "prácticas" matchee "practica" y
+    "cancelación" matchee "cancelacion".
 
     Args:
         tramites: Lista de trámites cargados del JSON.
@@ -80,14 +95,14 @@ def _buscar_tramite_relevante(tramites: list, pregunta: str) -> tuple[Optional[d
         Tupla (tramite_seleccionado, puntuacion_maxima).
         Si ningún trámite alcanza puntuación > 0, retorna (None, 0).
     """
-    pregunta_lower = pregunta.lower()
+    pregunta_norm = _normalizar(pregunta)
     mejor_tramite: Optional[dict] = None
     mejor_puntuacion = 0
 
     for tramite in tramites:
         puntuacion = 0
         for keyword in tramite.get("keywords", []):
-            if keyword.lower() in pregunta_lower:
+            if _normalizar(keyword) in pregunta_norm:
                 puntuacion += 1
 
         logger.debug(

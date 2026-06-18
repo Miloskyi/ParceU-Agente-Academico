@@ -192,6 +192,60 @@ Cada tarea construye sobre las anteriores. No hay código huérfano — todo se 
   - Documentar los 4 roles del equipo en el README
   - _Requerimientos: 13.3_
 
+- [x] 17. Implementar Runtime Extractor — descarga y procesamiento de PDFs en tiempo real
+  - Crear `agentes/runtime_extractor.py` con función `extraer_documentos_runtime(query)` que orquesta el pipeline completo
+  - Implementar `_buscar_en_portal(query)` que consulta `normativa.udea.edu.co/Documentos/Consultar?search=TÉRMINO` y extrae hasta 3 URLs de PDFs con sus títulos y fechas
+  - Implementar `_descargar_pdf_en_memoria(url)` que descarga el PDF como bytes con timeout=20s sin guardarlo en disco
+  - Implementar `_extraer_texto_pdf(pdf_bytes)` usando PyMuPDF (fitz) con fallback a pypdf si no está disponible
+  - Implementar `_chunkear_texto(texto, fuente)` con chunk_size=700, overlap=120
+  - Cada chunk retornado debe incluir metadatos: {contenido, fuente, url_origen, fecha_publicacion, tipo: "runtime_pdf"}
+  - _Requerimientos: 15.1, 15.2, 15.3, 15.4, 15.5, 15.6, 15.7_
+
+  - [ ]* 17.1 Escribir prueba de propiedad P12: Pipeline runtime no bloquea si portal cae
+    - **Propiedad 12: Resiliencia del Runtime Extractor**
+    - Mockear `httpx.get` para que lance `TimeoutException`; verificar que `extraer_documentos_runtime()` retorna `[]` sin lanzar excepción
+    - **Valida: Requerimiento 15.6**
+
+- [x] 18. Implementar DocWatcher — monitoreo y actualización automática de documentos
+  - Crear `agentes/doc_watcher.py` con `RegistroDocumento` TypedDict: {url, titulo, hash_sha256, ultima_revision, ultima_actualizacion, estado}
+  - Implementar `registrar_documento(url, titulo)` que calcula hash SHA-256 inicial y persiste en `data/doc_watcher_state.json`
+  - Implementar `verificar_documento(url)` que descarga y compara hash; si cambió, llama a `_reindexar_documento()`
+  - Implementar `_reindexar_documento(url, titulo, contenido_bytes)` que borra chunks viejos de ChromaDB e inserta los nuevos
+  - Implementar `forzar_actualizacion(url)` que re-indexa sin importar si el hash cambió
+  - Implementar `obtener_estado_documentos()` que retorna lista de estado para el frontend
+  - Implementar `iniciar_scheduler()` y `detener_scheduler()` que controlan el hilo daemon de polling
+  - El hilo daemon debe verificar documentos normativos cada 6 horas y ser detenible con flag `_scheduler_activo`
+  - _Requerimientos: 16.1, 16.2, 16.3, 16.4, 16.5, 16.6, 16.7, 16.8_
+
+  - [ ]* 18.1 Escribir prueba de propiedad P13: Idempotencia de re-indexación
+    - **Propiedad 13: Idempotencia del DocWatcher**
+    - Mockear ChromaDB; ejecutar `_reindexar_documento()` dos veces con el mismo contenido; verificar que el count final es igual al count después de la primera ejecución
+    - **Valida: Requerimiento 16.3**
+
+- [x] 19. Implementar SIA Scraper — consulta de oferta académica en tiempo real
+  - Crear `agentes/sia_scraper.py` con función `consultar_sia(query, forzar_actualizacion=False)` como función principal
+  - Implementar `_obtener_del_cache(query)` y `_guardar_en_cache(query, datos)` con TTL de 1 hora
+  - Implementar `_consultar_sia_http(query)` con petición a `sia.udea.edu.co` con timeout=15s
+  - Implementar `_parsear_json_sia(datos_json, query)` y `_parsear_oferta_html(html, query)` como parsers alternativos
+  - Implementar `_generar_datos_ejemplo(query)` como fallback cuando el portal no está accesible
+  - Implementar `formatear_respuesta_sia(cursos)` que genera texto formateado con emojis de estado de cupos para el Answerer
+  - Implementar `obtener_stats_cache()` y `limpiar_cache()` para los endpoints del backend
+  - Agregar detección de keywords SIA en `search_agent.py` (`_es_consulta_sia(query)`) para activar el scraper automáticamente
+  - _Requerimientos: 17.1, 17.2, 17.3, 17.4, 17.5, 17.6, 17.8_
+
+  - [ ]* 19.1 Escribir prueba de propiedad P14: Invariante de caché TTL
+    - **Propiedad 14: Caché con TTL estricto**
+    - Usar `hypothesis` con `@given(st.floats(min_value=3601.0, max_value=7200.0))` como tiempo transcurrido; verificar que `_obtener_del_cache()` retorna `None` si la entrada expiró
+    - **Valida: Requerimiento 17.4**
+
+- [x] 20. Integrar los tres módulos nuevos en el Search Agent y el backend
+  - Actualizar `agentes/search_agent.py` para orquestar los tres niveles: RAG check → runtime_extractor → sia_scraper (si aplica)
+  - El campo `agente_usado` del Estado debe reflejar el nivel usado: `"search_runtime"` | `"search_sia"` | `"rag_suficiente"` | `"search"`
+  - Agregar en `backend/main.py` el startup/shutdown del DocWatcher scheduler
+  - Agregar endpoints: `GET /api/documentos/estado`, `POST /api/documentos/actualizar`, `POST /api/documentos/registrar`
+  - Agregar endpoints: `GET /api/sia/oferta`, `GET /api/sia/cache/stats`, `DELETE /api/sia/cache`
+  - _Requerimientos: 15.1, 16.9, 17.7_
+
 ## Notes
 
 - Las tareas marcadas con `*` son opcionales y pueden omitirse para acelerar el MVP del hackathon
@@ -214,7 +268,9 @@ Cada tarea construye sobre las anteriores. No hay código huérfano — todo se 
     {"wave": 7, "tasks": ["9 - Search Agent", "10 - Urgency Agent y Calendario Agent"]},
     {"wave": 8, "tasks": ["11 - Interfaz Gradio multi-pestaña", "12 - Analytics y registro de sesión", "13 - Pipeline de ingesta de PDFs"]},
     {"wave": 9, "tasks": ["14 - Tests de integración end-to-end"]},
-    {"wave": 10, "tasks": ["15 - Checkpoint final", "16 - README y documentación"]}
+    {"wave": 10, "tasks": ["15 - Checkpoint final", "16 - README y documentación"]},
+    {"wave": 11, "tasks": ["17 - Runtime Extractor", "18 - DocWatcher", "19 - SIA Scraper"]},
+    {"wave": 12, "tasks": ["20 - Integración Search Agent + backend (runtime + docwatcher + sia)"]}
   ]
 }
 ```

@@ -212,16 +212,8 @@ function MessageBubble({ msg }) {
   )
 }
 
-export default function ChatTab() {
-  const [messages, setMessages] = useState([{
-    role: 'assistant',
-    content: '¡Hola! Soy el **Copiloto Administrativo** de la Facultad de Ingeniería UdeA. Puedo ayudarte con preguntas sobre reglamentos, trámites, fechas académicas y más. ¿En qué te puedo ayudar hoy?',
-    time: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' }),
-    fuentes: [],
-    es_urgente: false,
-  }])
+export default function ChatTab({ messages, setMessages, perfil, setPerfil }) {
   const [input, setInput] = useState('')
-  const [perfil, setPerfil] = useState('pregrado')
   const [loading, setLoading] = useState(false)
   const bottomRef = useRef(null)
 
@@ -278,7 +270,7 @@ export default function ChatTab() {
           </select>
           <button onClick={() => setMessages([{
             role: 'assistant',
-            content: '¡Hola! ¿En qué te puedo ayudar hoy?',
+            content: '¡Hola! Soy el **Copiloto Administrativo** de la Facultad de Ingeniería UdeA. Puedo ayudarte con preguntas sobre reglamentos, trámites, fechas académicas y más. ¿En qué te puedo ayudar hoy?',
             time: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' }),
             fuentes: [], es_urgente: false,
           }])}

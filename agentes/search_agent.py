@@ -3,19 +3,18 @@ agentes/search_agent.py
 -----------------------
 Nodo Search_Agent del Copiloto Administrativo UdeA.
 
-Realiza búsqueda web en el portal normativo de la UdeA cuando el RAG
+Realiza búsqueda en el portal normativo de la UdeA cuando el RAG
 no tiene suficiente información (score máximo < 0.6).
+
+Estrategia en tres niveles:
+  1. Búsqueda HTML clásica en el portal normativo.
+  2. Extracción en runtime: descarga PDFs específicos en memoria y los
+     procesa en la misma consulta (via runtime_extractor).
+  3. Consulta al SIA en tiempo real si la pregunta parece sobre oferta
+     académica, cupos o horarios (via sia_scraper).
 
 URL principal:  https://normativa.udea.edu.co/Documentos/Consultar
 URL fallback:   https://www.udea.edu.co/wps/portal/udea/web/inicio/institucional/normativa
-
-Flujo:
-    1. Verifica si documentos_rag tienen score suficiente (>= 0.6).
-       Si sí → retorna documentos_web=[] con agente_usado='rag_suficiente'.
-    2. Construye la query desde pregunta_reformulada.
-    3. Hace GET al portal normativo con timeout=10 s.
-    4. Si responde 200 → extrae documentos con regex del HTML.
-    5. Si falla (timeout, error HTTP, status != 200) → loguea y retorna [].
 
 Uso:
     from agentes.search_agent import search_agent_node
@@ -51,10 +50,24 @@ _REGEX_DOCS = re.compile(
 )
 _BASE_NORMATIVA = "https://normativa.udea.edu.co"
 
+# Palabras clave que indican una consulta sobre oferta académica / SIA
+_KEYWORDS_SIA = {
+    "cupos", "horario", "materia", "curso", "asignatura", "semestre",
+    "oferta", "grupo", "docente", "profesor", "inscripción", "creditos",
+    "créditos", "prerrequisito", "código", "cálculo", "física", "química",
+    "programación", "algoritmos", "estructuras de datos",
+}
+
 
 # ---------------------------------------------------------------------------
 # Helpers privados
 # ---------------------------------------------------------------------------
+
+
+def _es_consulta_sia(query: str) -> bool:
+    """Detecta si la query probablemente necesita datos del SIA."""
+    palabras = set(query.lower().split())
+    return bool(palabras & _KEYWORDS_SIA)
 
 
 def _extraer_documentos(html: str) -> list[dict]:
@@ -74,18 +87,16 @@ def _extraer_documentos(html: str) -> list[dict]:
             {
                 "titulo": titulo,
                 "url": f"{_BASE_NORMATIVA}{ruta}",
-                "texto": titulo,  # el texto disponible en el HTML es el propio título
+                "texto": titulo,
             }
         )
     logger.info("Search_Agent: extraídos %d documentos del HTML", len(resultados))
     return resultados
 
 
-def _buscar_en_portal(query: str) -> list[dict]:
+def _buscar_en_portal_html(query: str) -> list[dict]:
     """
-    Realiza la petición HTTP al portal normativo.
-
-    Primero intenta la URL principal; si falla, intenta el fallback.
+    Realiza la petición HTTP al portal normativo (búsqueda HTML clásica).
 
     Args:
         query: Texto de búsqueda.
@@ -126,7 +137,7 @@ def _buscar_en_portal(query: str) -> list[dict]:
         except Exception as exc:  # noqa: BLE001
             logger.error("Search_Agent: error inesperado en %s — %s", url, exc)
 
-    logger.warning("Search_Agent: ambas URLs fallaron; retornando documentos_web=[]")
+    logger.warning("Search_Agent: ambas URLs fallaron; retornando []")
     return []
 
 
@@ -139,17 +150,18 @@ def search_agent_node(estado: EstadoCopiloto) -> dict:
     """
     Nodo Search_Agent del grafo LangGraph.
 
-    Busca documentos en el portal normativo de la UdeA solo si el RAG
-    no encontró información suficiente (score máximo < 0.6).
+    Estrategia de tres niveles:
+      1. Si el RAG ya tiene score suficiente → no busca.
+      2. Descarga y procesa PDFs en runtime desde el portal normativo.
+      3. Si la consulta parece sobre oferta académica, consulta el SIA en vivo.
 
     Args:
         estado: Estado actual del grafo.
 
     Returns:
         Dict con:
-            - documentos_web (List[dict]): resultados encontrados, o [] si RAG
-              ya tenía buena info o si la búsqueda falló.
-            - agente_usado (str): 'search' | 'rag_suficiente'.
+            - documentos_web (List[dict]): resultados encontrados.
+            - agente_usado (str): 'search_runtime' | 'search_sia' | 'rag_suficiente' | 'search'.
     """
     try:
         # --- 1. ¿El RAG ya tiene información suficiente? ---
@@ -160,14 +172,14 @@ def search_agent_node(estado: EstadoCopiloto) -> dict:
 
         if mejor_score >= _SCORE_UMBRAL:
             logger.info(
-                "Search_Agent: RAG con score=%.2f >= %.1f — búsqueda web omitida",
+                "Search_Agent: RAG con score=%.2f >= %.1f — búsqueda omitida",
                 mejor_score,
                 _SCORE_UMBRAL,
             )
             return {"documentos_web": [], "agente_usado": "rag_suficiente"}
 
         logger.info(
-            "Search_Agent: RAG con score=%.2f < %.1f — iniciando búsqueda web",
+            "Search_Agent: RAG con score=%.2f < %.1f — iniciando búsqueda multi-nivel",
             mejor_score,
             _SCORE_UMBRAL,
         )
@@ -175,15 +187,61 @@ def search_agent_node(estado: EstadoCopiloto) -> dict:
         # --- 2. Construir query ---
         query = estado.get("pregunta_reformulada", "").strip()
         if not query:
-            logger.warning(
-                "Search_Agent: pregunta_reformulada vacía — retornando documentos_web=[]"
-            )
+            logger.warning("Search_Agent: pregunta_reformulada vacía")
             return {"documentos_web": [], "agente_usado": "search"}
 
-        # --- 3. Buscar en el portal ---
-        resultados = _buscar_en_portal(query)
+        todos_los_docs: list[dict] = []
+        agente_usado = "search"
 
-        return {"documentos_web": resultados, "agente_usado": "search"}
+        # --- 3. Extracción en runtime (descarga PDFs al vuelo) ---
+        try:
+            from agentes.runtime_extractor import extraer_documentos_runtime
+            chunks_runtime = extraer_documentos_runtime(query)
+            if chunks_runtime:
+                # Convertir chunks al formato esperado por el Answerer
+                for chunk in chunks_runtime:
+                    todos_los_docs.append({
+                        "contenido": chunk.get("contenido", ""),
+                        "url": chunk.get("url_origen", ""),
+                        "fuente": chunk.get("fuente", ""),
+                        "fecha_publicacion": chunk.get("fecha_publicacion", ""),
+                        "tipo": "runtime_pdf",
+                    })
+                agente_usado = "search_runtime"
+                logger.info(
+                    "Search_Agent: runtime extractor retornó %d chunks",
+                    len(chunks_runtime),
+                )
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("Search_Agent: runtime extractor falló — %s", exc)
+
+        # Fallback HTML si el runtime extractor no trajo nada
+        if not todos_los_docs:
+            docs_html = _buscar_en_portal_html(query)
+            todos_los_docs.extend(docs_html)
+
+        # --- 4. Consulta SIA si la pregunta es sobre oferta académica ---
+        if _es_consulta_sia(query):
+            try:
+                from agentes.sia_scraper import consultar_sia, formatear_respuesta_sia
+                cursos_sia = consultar_sia(query)
+                if cursos_sia:
+                    texto_sia = formatear_respuesta_sia(cursos_sia)
+                    todos_los_docs.append({
+                        "contenido": texto_sia,
+                        "url": "https://sia.udea.edu.co",
+                        "fuente": "SIA UdeA (tiempo real)",
+                        "tipo": "sia_live",
+                    })
+                    agente_usado = "search_sia"
+                    logger.info(
+                        "Search_Agent: SIA retornó %d cursos para '%s'",
+                        len(cursos_sia), query[:50],
+                    )
+            except Exception as exc:  # noqa: BLE001
+                logger.warning("Search_Agent: SIA scraper falló — %s", exc)
+
+        return {"documentos_web": todos_los_docs, "agente_usado": agente_usado}
 
     except Exception as exc:  # noqa: BLE001
         logger.error("Search_Agent: excepción no controlada — %s", exc, exc_info=True)

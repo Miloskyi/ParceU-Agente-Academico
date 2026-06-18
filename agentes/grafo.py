@@ -3,11 +3,12 @@ agentes/grafo.py
 ----------------
 Grafo principal del Copiloto Administrativo UdeA.
 
-Arquitectura multi-agente con 11 nodos:
+Arquitectura multi-agente con 12 nodos:
 
     supervisor          → analiza complejidad y crea plan de agentes
     memoria_agent       → actualiza el resumen conversacional
     router              → clasifica intención y detecta urgencias
+    out_of_scope        → rechaza consultas fuera del dominio UdeA (sin LLM ni ChromaDB)
     rag_agent           → busca en ChromaDB
     search_agent        → busca en portal normativo (web)
     tramite_agent       → guía de trámites desde JSON
@@ -19,7 +20,8 @@ Arquitectura multi-agente con 11 nodos:
 
 Flujo:
     supervisor → memoria_agent → router
-    router → (decidir_ruta) → rag_agent | tramite_agent | urgency_agent
+    router → (decidir_ruta) → rag_agent | tramite_agent | urgency_agent | out_of_scope
+    out_of_scope → END
     rag_agent → search_agent → calendario_agent → answerer
     tramite_agent → answerer
     urgency_agent → answerer
@@ -38,6 +40,7 @@ from agentes.calendario_agent import calendario_agent_node
 from agentes.estado import EstadoCopiloto
 from agentes.grader import decidir_post_grader, grader_node
 from agentes.memoria_agent import memoria_agent_node
+from agentes.out_of_scope import out_of_scope_node
 from agentes.rag_agent import rag_agent_node
 from agentes.router import decidir_ruta, router_node
 from agentes.search_agent import search_agent_node
@@ -52,7 +55,7 @@ logger = get_logger(__name__)
 
 def _construir_grafo() -> StateGraph:
     """
-    Construye el StateGraph completo con los 11 nodos del sistema multi-agente.
+    Construye el StateGraph completo con los 12 nodos del sistema multi-agente.
     """
     grafo = StateGraph(EstadoCopiloto)
 
@@ -60,6 +63,7 @@ def _construir_grafo() -> StateGraph:
     grafo.add_node("supervisor",      supervisor_node)
     grafo.add_node("memoria_agent",   memoria_agent_node)
     grafo.add_node("router",          router_node)
+    grafo.add_node("out_of_scope",    out_of_scope_node)
     grafo.add_node("rag_agent",       rag_agent_node)
     grafo.add_node("search_agent",    search_agent_node)
     grafo.add_node("tramite_agent",   tramite_agent_node)
@@ -84,8 +88,12 @@ def _construir_grafo() -> StateGraph:
             "rag_agent":      "rag_agent",
             "tramite_agent":  "tramite_agent",
             "urgency_agent":  "urgency_agent",
+            "out_of_scope":   "out_of_scope",
         },
     )
+
+    # ── Out-of-scope: respuesta directa → END (sin pasar por answerer/grader) ─
+    grafo.add_edge("out_of_scope", END)
 
     # ── Flujo RAG: rag → search → calendario → answerer ─────────────────────
     grafo.add_edge("rag_agent",        "search_agent")
@@ -110,7 +118,7 @@ def _construir_grafo() -> StateGraph:
         },
     )
 
-    logger.info("Grafo multi-agente construido con 11 nodos")
+    logger.info("Grafo multi-agente construido con 12 nodos")
     return grafo
 
 
